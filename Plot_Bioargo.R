@@ -5,7 +5,6 @@
 # plotting overview of graphs, with options to plot single graphs
 #This function returns all the plots in a single functions
 # Always be trimmed before plotting according to your needs
-
 plot_BioArgo<- function(x,temperature=FALSE,salinity=FALSE,
                         oxygen=FALSE,chlorophyll=FALSE)
   {
@@ -27,20 +26,32 @@ plot_BioArgo<- function(x,temperature=FALSE,salinity=FALSE,
  #if you don't have any option this wil plot the whole graph in a panel
    else
   {
-
     par(mfrow=c(2,2))
-    plot(x[[5]],-x[[4]],xlab = names(x)[5], ylab = names(x)[4],xaxt="n",type = "l")
+    par(mar=c(2,3,2,2))
+    plot(x[[5]],-x[[4]],xlab = "", ylab = names(x)[4],xaxt="n",type = "l",col="red")
     axis(3)
     axis(2)
-    plot(x[[6]],-x[[4]],xlab = names(x)[6], ylab = names(x)[4],xaxt="n",yaxt="n",type = "l")
+    mtext(names(x)[5],side = 3,line = 2)
+    mtext(names(x)[4],side = 2,line = 3)
+    
+    plot(x[[6]],-x[[4]],xlab = "", ylab = names(x)[4],xaxt="n",yaxt="n",type = "l",col="blue")
     axis(3)
     axis(2)
-    plot(x[[7]],-x[[4]],xlab = names(x)[7], ylab = names(x)[4],xaxt="n",yaxt="n",type = "l")
+    mtext(names(x)[6],side = 3,line = 2)
+    mtext(names(x)[4],side = 2,line = 3)
+    
+    plot(x[[7]],-x[[4]],xlab = "", ylab = names(x)[4],xaxt="n",yaxt="n",type = "l",col="orange")
     axis(3)
     axis(2)
-    plot(x[[8]],-x[[4]],xlab = names(x)[8], ylab = names(x)[4],xaxt="n",yaxt="n",type = "l")
+    mtext(names(x)[7],side = 3,line = 2)
+    mtext(names(x)[4],side = 2,line = 3)
+    
+    plot(x[[8]],-x[[4]],xlab = "", ylab = names(x)[4],xaxt="n",yaxt="n",type = "l",col="green")
     axis(3)
     axis(2)
+    mtext(names(x)[8],side = 3,line = 2)
+    mtext(names(x)[4],side = 2,line = 3)
+    
   }
   }
 
