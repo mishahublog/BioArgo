@@ -51,7 +51,8 @@ plot_BioArgo<- function(x,temperature=FALSE,salinity=FALSE,
     axis(2)
     mtext(names(x)[8],side = 3,line = 2)
     mtext(names(x)[4],side = 2,line = 3)
-    
+    library(crayon)
+    cat(blue("follow pepprbook.com for do More in R "))
   }
   }
 
