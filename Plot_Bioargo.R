@@ -26,9 +26,11 @@ plot_BioArgo<- function(x,temperature=FALSE,salinity=FALSE,
  #if you don't have any option this wil plot the whole graph in a panel
    else
   {
-    par(mfrow=c(2,2))
+   #set parameters 
+     par(mfrow=c(2,2))
     par(mar=c(2,3,2,2))
-    plot(x[[5]],-x[[4]],xlab = "", ylab = names(x)[4],xaxt="n",type = "l",col="red")
+  #plot all the four plots 
+      plot(x[[5]],-x[[4]],xlab = "", ylab = names(x)[4],xaxt="n",type = "l",col="red")
     axis(3)
     axis(2)
     mtext(names(x)[5],side = 3,line = 2)
