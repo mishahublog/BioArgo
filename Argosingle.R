@@ -25,6 +25,11 @@ ExtractBioArgo<- function(bioarg) {
         data.frame(Date=date,latitude=lat,longitude=lon,pressure=pres[1:trimfac],
     temperature=temp[1:trimfac],salinity=psal[1:trimfac],
     oxygen=oxy[1:trimfac],chlorophyll=chl[1:trimfac]),envir = .GlobalEnv)
+ #Data for listing
+ data<- data.frame(Date=date,latitude=lat,longitude=lon,pressure=pres[1:trimfac],
+            temperature=temp[1:trimfac],salinity=psal[1:trimfac],
+            oxygen=oxy[1:trimfac],chlorophyll=chl[1:trimfac])
+ return(data)
  library(crayon)
  cat(blue("follow pepprbook.com for do More in R "))
  }
