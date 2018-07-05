@@ -20,10 +20,11 @@ make.section<- function(Argolist)
   lon.section<- lapply(listlon,function(x)unique(x[1]))
   depth.section<- lapply(depth,function(x)unique(x[1]))
   library(plyr)
-xlist<- list(date.section,lat.section,lon.section,depth.section)
+  nam<- substr(names(Argolist),start = 1,stop = 11)
+xlist<- list(nam,date.section,lat.section,lon.section,depth.section)
 #xdata<- data.frame(x$date,x$lon,x$lat,x$depth)
 xdata1<- data.frame(lapply(xlist,function(x)ldply(x)))
-names(xdata1)<- c("date","lon","lat","depth")
+names(xdata1)<- c("id","date","lon","lat","depth")
 return(xdata1)
   }
   
