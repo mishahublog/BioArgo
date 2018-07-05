@@ -1,5 +1,22 @@
+#========================================================================
+#
+#This function is intended for filled contouring of bio argo parameters with section graphs
+#
+#================================++++===========++++++======+++++====++++==========+++===========
 
-Filledsectionplots<- function(Argolist,parameter)
+
+
+
+
+Filledsectionplots<- function(Argolist,parameter,col.val,cont.strp,btmdepth,srfdepth)
+#Argolist is a list BioArgo extracted as a output from extractbioArgo function
+#Parameter defines the parameters such as temp, sal,etc
+#col.val amount of colours used in the palette, Here we used matlab.like from colourramp
+#con.strp is a logical value to strip depths in contour
+#btmdepth is the last depth(bottom depth)
+#srfdepth is surface depths
+  
+  
 {maxfac<- max(as.numeric(lapply(1:length(Argolist),function(x)length(Argolist[[x]]$pressure))))
 listlat<- lapply(1:length(Argolist),function(x)c(Argolist[[x]]$latitude,rep(NA,Mod(length(Argolist[[x]]$latitude)-(maxfac)))))
 listlon<- lapply(1:length(Argolist),function(x)c(Argolist[[x]]$longitude,rep(NA,Mod(length(Argolist[[x]]$longitude)-(maxfac)))))
@@ -21,9 +38,11 @@ xlist<- list(nam,date.section,lat.section,lon.section,depth.section)
 xdata1<- data.frame(lapply(xlist,function(x)ldply(x)))
 names(xdata1)<- c("id","date","lon","lat","depth")
 
-#if(overview==TRUE){return(xdata1)}
 
-  if(parameter=="temperature" ){
+
+
+
+  if(parameter=="temperature" && cont.strp==TRUE){
 mattemp<- as.matrix(as.data.frame(listtemp))
 colnames(mattemp)<- NULL
 totaldepthno<- max(as.numeric(lapply(1:length(Argolist),function(x)length(Argolist[[x]]$pressure))))
@@ -32,26 +51,26 @@ maxdepth<- max(as.numeric(lapply(depth, function(x) x[which.max(abs(x))])))
 mindepth<- min(as.numeric(lapply(depth, function(x) x[which.min(abs(x))])))
 mintemp<- min(as.numeric(lapply(listtemp, function(x) x[which.min(abs(x))])))
 maxtemp<- max(as.numeric(lapply(listtemp, function(x) x[which.max(abs(x))])))
+library(colorRamps)
 
-  
 f <- function(m) t(m)[,nrow(m):1]
 filled.contour(x = 1:nrow(f(mattemp)),y = 1:ncol(f(mattemp)),
-               z =f(mattemp), color.palette = terrain.colors,
+               z =f(mattemp), col = matlab.like(col.val),
                plot.title = title(main = "Temperature contours from BioArgo",
                                   xlab = "Date",ylab = "Depth(m)"),
                plot.axes = {
-                 axis(side = 1,at= 1:4,labels = seq(date[[1]],date[[4]],length.out = 4))
+                 axis(side = 1,at= 1:length(Argolist),labels = seq(date[[1]],date[[length(Argolist)]],length.out = length(Argolist)))
                  axis(2,at=seq(1,totaldepthno,length.out = 25),
                       labels = rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))},
                key.title = title(main="Temperature()"),
-               key.axes = axis(4, seq(mintemp,maxtemp, length.out =  10)))
+               key.axes = axis(4, seq(mintemp,maxtemp, length.out =  10)),ylim = range(btmdepth,srfdepth))
 
 return(xdata1)
 
   } 
 else
 
-if(parameter=="salinity" ){
+if(parameter=="salinity" && cont.strp==TRUE){
   mattemp<- as.matrix(as.data.frame(listsal))
   colnames(mattemp)<- NULL
   totaldepthno<- max(as.numeric(lapply(1:length(Argolist),function(x)length(Argolist[[x]]$pressure))))
@@ -64,21 +83,21 @@ if(parameter=="salinity" ){
   
   f <- function(m) t(m)[,nrow(m):1]
   filled.contour(x = 1:nrow(f(mattemp)),y = 1:ncol(f(mattemp)),
-                 z =f(mattemp), color.palette = terrain.colors,
+                 z =f(mattemp), col =  matlab.like(col.val),
                  plot.title = title(main = "Salinity contours from BioArgo",
                                     xlab = "Date",ylab = "Depth(m)"),
                  plot.axes = {
-                   axis(side = 1,at= 1:4,labels = seq(date[[1]],date[[4]],length.out = 4))
+                   axis(side = 1,at= 1:length(Argolist),labels = seq(date[[1]],date[[length(Argolist)]],length.out = length(Argolist)))
                    axis(2,at=seq(1,totaldepthno,length.out = 25),
                         labels = rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))},
                  key.title = title(main="salinity()"),
-                 key.axes = axis(4, seq(minsal, maxsal, length.out =  10)))
+                 key.axes = axis(4, seq(minsal, maxsal, length.out =  10)),ylim = range(btmdepth,srfdepth))
   
   return(xdata1)
   
 } else
 
-if(parameter=="oxygen" ){
+if(parameter=="oxygen"&& cont.strp==TRUE ){
   mattemp<- as.matrix(as.data.frame(listoxy))
   colnames(mattemp)<- NULL
   totaldepthno<- max(as.numeric(lapply(1:length(Argolist),function(x)length(Argolist[[x]]$pressure))))
@@ -90,19 +109,19 @@ if(parameter=="oxygen" ){
   
   f <- function(m) t(m)[,nrow(m):1]
   filled.contour(x = 1:nrow(f(mattemp)),y = 1:ncol(f(mattemp)),
-                 z =f(mattemp), color.palette = terrain.colors,
+                 z =f(mattemp), col =  matlab.like(col.val),
                  plot.title = title(main = "Oxygen contours from BioArgo",
                                     xlab = "Date",ylab = "Depth()"),
                  plot.axes = {
-                   axis(side = 1,at= 1:4,labels = seq(date[[1]],date[[4]],length.out = 4))
+                   axis(side = 1,at= 1:length(Argolist),labels = seq(date[[1]],date[[length(Argolist)]],length.out = length(Argolist)))
                    axis(2,at=seq(1,totaldepthno,length.out = 25),
                         labels = rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))},
                  key.title = title(main="Oxygen()"),
-                 key.axes = axis(4, seq(minoxy, maxoxy, length.out =  10)))
+                 key.axes = axis(4, seq(minoxy, maxoxy, length.out =  10)),ylim = range(btmdepth,srfdepth))
   
   return(xdata1)
 }
-if(parameter=="chlorophyll" ){
+if(parameter=="chlorophyll"&& cont.strp==TRUE ){
   mattemp<- as.matrix(as.data.frame(listchl))
   colnames(mattemp)<- NULL
   totaldepthno<- max(as.numeric(lapply(1:length(Argolist),function(x)length(Argolist[[x]]$pressure))))
@@ -114,15 +133,122 @@ if(parameter=="chlorophyll" ){
   
   f <- function(m) t(m)[,nrow(m):1]
   filled.contour(x = 1:nrow(f(mattemp)),y = 1:ncol(f(mattemp)),
-                 z =f(mattemp), color.palette = terrain.colors,
+                 z =f(mattemp), col=  matlab.like(col.val),
                  plot.title = title(main = "chlorophyll contours from BioArgo",
                                     xlab = "Date",ylab = "Depth(m)"),
                  plot.axes = {
-                   axis(side = 1,at= 1:4,labels = seq(date[[1]],date[[4]],length.out = 4))
+                   axis(side = 1,at= 1:length(Argolist),labels = seq(date[[1]],date[[length(Argolist)]],length.out = length(Argolist)))
                    axis(2,at=seq(1,totaldepthno,length.out = 25),
                         labels = rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))},
                  key.title = title(main="chlorophyll()"),
-                 key.axes = axis(4, seq(minchl,maxchl, length.out =  10)))
+                 key.axes = axis(4, seq(minchl,maxchl, length.out =  10)),ylim = range(btmdepth,srfdepth))
   
-  return(xdata1)
-}}
+  return(xdata1)}
+#+++++++++++++++++++++=============================================================================================
+# without limits
+  
+  
+    
+  {if(parameter=="temperature"&& cont.strp==FALSE ){
+    mattemp<- as.matrix(as.data.frame(listtemp))
+    colnames(mattemp)<- NULL
+    totaldepthno<- max(as.numeric(lapply(1:length(Argolist),function(x)length(Argolist[[x]]$pressure))))
+    depth<- lapply(1:length(Argolist),function(x)c(Argolist[[x]]$pressure,rep(NA,Mod(length(Argolist[[x]]$pressure)-(maxfac)))))
+    maxdepth<- max(as.numeric(lapply(depth, function(x) x[which.max(abs(x))])))
+    mindepth<- min(as.numeric(lapply(depth, function(x) x[which.min(abs(x))])))
+    mintemp<- min(as.numeric(lapply(listtemp, function(x) x[which.min(abs(x))])))
+    maxtemp<- max(as.numeric(lapply(listtemp, function(x) x[which.max(abs(x))])))
+    library(colorRamps)
+    
+    f <- function(m) t(m)[,nrow(m):1]
+    filled.contour(x = 1:nrow(f(mattemp)),y = 1:ncol(f(mattemp)),
+                   z =f(mattemp), col = matlab.like(col.val),
+                   plot.title = title(main = "Temperature contours from BioArgo",
+                                      xlab = "Date",ylab = "Depth(m)"),
+                   plot.axes = {
+                     axis(side = 1,at= 1:length(Argolist),labels = seq(date[[1]],date[[length(Argolist)]],length.out = length(Argolist)))
+                     axis(2,at=seq(1,totaldepthno,length.out = 25),
+                          labels = rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))},
+                   key.title = title(main="Temperature()"),
+                   key.axes = axis(4, seq(mintemp,maxtemp, length.out =  10)))
+    
+    return(xdata1)
+    
+  } 
+    else
+      
+      if(parameter=="salinity"&& cont.strp==FALSE ){
+        mattemp<- as.matrix(as.data.frame(listsal))
+        colnames(mattemp)<- NULL
+        totaldepthno<- max(as.numeric(lapply(1:length(Argolist),function(x)length(Argolist[[x]]$pressure))))
+        depth<- lapply(1:length(Argolist),function(x)c(Argolist[[x]]$pressure,rep(NA,Mod(length(Argolist[[x]]$pressure)-(maxfac)))))
+        maxdepth<- max(as.numeric(lapply(depth, function(x) x[which.max(abs(x))])))
+        mindepth<- max(as.numeric(lapply(depth, function(x) x[which.min(abs(x))])))
+        minsal<- min(as.numeric(lapply(listsal, function(x) x[which.min(abs(x))])))
+        maxsal<- max(as.numeric(lapply(listsal, function(x) x[which.max(abs(x))])))
+        
+        
+        f <- function(m) t(m)[,nrow(m):1]
+        filled.contour(x = 1:nrow(f(mattemp)),y = 1:ncol(f(mattemp)),
+                       z =f(mattemp), col =  matlab.like(col.val),
+                       plot.title = title(main = "Salinity contours from BioArgo",
+                                          xlab = "Date",ylab = "Depth(m)"),
+                       plot.axes = {
+                         axis(side = 1,at= 1:length(Argolist),labels = seq(date[[1]],date[[length(Argolist)]],length.out = length(Argolist)))
+                         axis(2,at=seq(1,totaldepthno,length.out = 25),
+                              labels = rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))},
+                       key.title = title(main="salinity()"),
+                       key.axes = axis(4, seq(minsal, maxsal, length.out =  10)))
+        
+        return(xdata1)
+        
+      } else
+        
+        if(parameter=="oxygen" && cont.strp==FALSE){
+          mattemp<- as.matrix(as.data.frame(listoxy))
+          colnames(mattemp)<- NULL
+          totaldepthno<- max(as.numeric(lapply(1:length(Argolist),function(x)length(Argolist[[x]]$pressure))))
+          depth<- lapply(1:length(Argolist),function(x)c(Argolist[[x]]$pressure,rep(NA,Mod(length(Argolist[[x]]$pressure)-(maxfac)))))
+          maxdepth<- max(as.numeric(lapply(depth, function(x) x[which.max(abs(x))])))
+          mindepth<- max(as.numeric(lapply(depth, function(x) x[which.min(abs(x))])))
+          minoxy<- min(as.numeric(lapply(listoxy, function(x) x[which.min(abs(x))])))
+          maxoxy<- max(as.numeric(lapply(listoxy, function(x) x[which.max(abs(x))])))
+          
+          f <- function(m) t(m)[,nrow(m):1]
+          filled.contour(x = 1:nrow(f(mattemp)),y = 1:ncol(f(mattemp)),
+                         z =f(mattemp), col =  matlab.like(col.val),
+                         plot.title = title(main = "Oxygen contours from BioArgo",
+                                            xlab = "Date",ylab = "Depth()"),
+                         plot.axes = {
+                           axis(side = 1,at= 1:length(Argolist),labels = seq(date[[1]],date[[length(Argolist)]],length.out = length(Argolist)))
+                           axis(2,at=seq(1,totaldepthno,length.out = 25),
+                                labels = rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))},
+                         key.title = title(main="Oxygen()"),
+                         key.axes = axis(4, seq(minoxy, maxoxy, length.out =  10)))
+          
+          return(xdata1)
+        }
+    if(parameter=="chlorophyll"&& cont.strp==FALSE ){
+      mattemp<- as.matrix(as.data.frame(listchl))
+      colnames(mattemp)<- NULL
+      totaldepthno<- max(as.numeric(lapply(1:length(Argolist),function(x)length(Argolist[[x]]$pressure))))
+      depth<- lapply(1:length(Argolist),function(x)c(Argolist[[x]]$pressure,rep(NA,Mod(length(Argolist[[x]]$pressure)-(maxfac)))))
+      maxdepth<- max(as.numeric(lapply(depth, function(x) x[which.max(abs(x))])))
+      mindepth<- max(as.numeric(lapply(depth, function(x) x[which.min(abs(x))])))
+      minchl<- min(as.numeric(lapply(listchl, function(x) x[which.min(abs(x))])))
+      maxchl<- max(as.numeric(lapply(listchl, function(x) x[which.max(abs(x))])))
+      
+      f <- function(m) t(m)[,nrow(m):1]
+      filled.contour(x = 1:nrow(f(mattemp)),y = 1:ncol(f(mattemp)),
+                     z =f(mattemp), col=  matlab.like(col.val),
+                     plot.title = title(main = "chlorophyll contours from BioArgo",
+                                        xlab = "Date",ylab = "Depth(m)"),
+                     plot.axes = {
+                       axis(side = 1,at= 1:length(Argolist),labels = seq(date[[1]],date[[length(Argolist)]],length.out = length(Argolist)))
+                       axis(2,at=seq(1,totaldepthno,length.out = 25),
+                            labels = rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))},
+                     key.title = title(main="chlorophyll()"),
+                     key.axes = axis(4, seq(minchl,maxchl, length.out =  10)))
+      
+      return(xdata1)}}
+}
