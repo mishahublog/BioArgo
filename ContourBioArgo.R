@@ -1,6 +1,6 @@
 
 
-Contour.BioArgo<- function(Argolist,overview,parameter,lev,col=TRUE)
+Contour.BioArgo<- function(Argolist,overview=FALSE,parameter,...)
 #Data formating
 {maxfac<- max(as.numeric(lapply(1:length(Argolist),function(x)length(Argolist[[x]]$pressure))))
 listlat<- lapply(1:length(Argolist),function(x)c(Argolist[[x]]$latitude,rep(NA,Mod(length(Argolist[[x]]$latitude)-(maxfac)))))
@@ -72,7 +72,7 @@ if (overview==TRUE)
 par(mfrow=c(2,2))
 #Temperature
 contour(x = 1:nrow(f(mattemp)),y = 1:ncol(f(mattemp)),
-        z =f(mattemp), xaxt="n",yaxt="n",col=matlab.like(15),nlevels = lev)
+        z =f(mattemp), xaxt="n",yaxt="n",...)
  axis(side = 1,at = 1:length(Argolist),labels = seq(date[[1]],date[[length(Argolist)]],length.out = length(Argolist)) )
  axis(side = 2,at=seq(1,totaldepthno,length.out =25),rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))
  mtext("Date",side = 1,line=2.5)
@@ -81,7 +81,7 @@ contour(x = 1:nrow(f(mattemp)),y = 1:ncol(f(mattemp)),
  
 #Salinity
  contour(x = 1:nrow(f(matsal)),y = 1:ncol(f(matsal)),
-         z =f(matsal), xaxt="n",yaxt="n",col=matlab.like(15),nlevels = lev)
+         z =f(matsal), xaxt="n",yaxt="n",...)
  axis(side = 1,at = 1:length(Argolist),labels = seq(date[[1]],date[[length(Argolist)]],length.out = length(Argolist)) )
  axis(side = 2,at=seq(1,totaldepthno,length.out =25),rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))
  mtext("Date",side = 1,line=2.5)
@@ -91,7 +91,7 @@ contour(x = 1:nrow(f(mattemp)),y = 1:ncol(f(mattemp)),
  
  #Oxygen
  contour(x = 1:nrow(f(matoxyl)),y = 1:ncol(f(matoxyl)),
-         z =f(matoxyl), xaxt="n",yaxt="n",col=matlab.like(15),nlevels = lev)
+         z =f(matoxyl), xaxt="n",yaxt="n",...)
  axis(side = 1,at = 1:length(Argolist),labels = seq(date[[1]],date[[length(Argolist)]],length.out = length(Argolist)) )
  axis(side = 2,at=seq(1,totaldepthno,length.out =25),rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))
  mtext("Date",side = 1,line=2.5)
@@ -100,27 +100,28 @@ contour(x = 1:nrow(f(mattemp)),y = 1:ncol(f(mattemp)),
  
  #chlorophyll
  contour(x = 1:nrow(f(matchl)),y = 1:ncol(f(matchl)),
-         z =f(matchl), xaxt="n",yaxt="n",col=matlab.like(15),nlevels = lev)
+         z =f(matchl), xaxt="n",yaxt="n",...)
  axis(side = 1,at = 1:length(Argolist),labels = seq(date[[1]],date[[length(Argolist)]],length.out = length(Argolist)) )
  axis(side = 2,at=seq(1,totaldepthno,length.out =25),rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))
  mtext("Date",side = 1,line=2.5)
  mtext("Depth(m)",side = 2,line = 2.5)
  title(main = "vertical section of chlorophyll")}
 #=================================================================================================================
+# single plots
 #Salinity
  else
-   if(parameter=="salinity"&& col==TRUE)
+   if(parameter=="salinity")
    {contour(x = 1:nrow(f(matsal)),y = 1:ncol(f(matsal)),
-                   z =f(matsal), xaxt="n",yaxt="n",col=matlab.like(15),nlevels = lev)
+                   z =f(matsal), xaxt="n",yaxt="n",...)
 axis(side = 1,at = 1:length(Argolist),labels = seq(date[[1]],date[[length(Argolist)]],length.out = length(Argolist)) )
 axis(side = 2,at=seq(1,totaldepthno,length.out =25),rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))
 mtext("Date",side = 1,line=2.5)
 mtext("Depth(m)",side = 2,line = 2.5)
 title(main = "vertical section of Salinity")}
 else
-  if(parameter=="salinity"&& col==FALSE)
+  if(parameter=="salinity")
   {contour(x = 1:nrow(f(matsal)),y = 1:ncol(f(matsal)),
-           z =f(matsal), xaxt="n",yaxt="n",nlevels = lev)
+           z =f(matsal), xaxt="n",yaxt="n",...)
     axis(side = 1,at = 1:length(Argolist),labels = seq(date[[1]],date[[length(Argolist)]],length.out = length(Argolist)) )
     axis(side = 2,at=seq(1,totaldepthno,length.out =25),rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))
     mtext("Date",side = 1,line=2.5)
@@ -129,18 +130,18 @@ else
 #=====================================================================================================================
 # temperature
 else
-  if(parameter=="temperature"&& col==TRUE)
+  if(parameter=="temperature")
   {contour(x = 1:nrow(f(mattemp)),y = 1:ncol(f(mattemp)),
-           z =f(mattemp), xaxt="n",yaxt="n",col=matlab.like(15),nlevels = lev)
+           z =f(mattemp), xaxt="n",yaxt="n",...)
     axis(side = 1,at = 1:length(Argolist),labels = seq(date[[1]],date[[length(Argolist)]],length.out = length(Argolist)) )
     axis(side = 2,at=seq(1,totaldepthno,length.out =25),rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))
     mtext("Date",side = 1,line=2.5)
     mtext("Depth(m)",side = 2,line = 2.5)
     title(main = "vertical section of Temperature")}
 else
-  if(parameter=="temperature"&& col==FALSE)
+  if(parameter=="temperature")
   {contour(x = 1:nrow(f(mattemp)),y = 1:ncol(f(mattemp)),
-           z =f(mattemp), xaxt="n",yaxt="n",nlevels = lev)
+           z =f(mattemp), xaxt="n",yaxt="n",...)
     axis(side = 1,at = 1:length(Argolist),labels = seq(date[[1]],date[[length(Argolist)]],length.out = length(Argolist)) )
     axis(side = 2,at=seq(1,totaldepthno,length.out =25),rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))
     mtext("Date",side = 1,line=2.5)
@@ -149,18 +150,18 @@ else
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #Oxygen
 else
-  if(parameter=="oxygen"&& col==TRUE)
+  if(parameter=="oxygen")
   {contour(x = 1:nrow(f(matoxyl)),y = 1:ncol(f(matoxyl)),
-           z =f(matoxyl), xaxt="n",yaxt="n",col=matlab.like(15),nlevels = lev)
+           z =f(matoxyl), xaxt="n",yaxt="n",...)
     axis(side = 1,at = 1:length(Argolist),labels = seq(date[[1]],date[[length(Argolist)]],length.out = length(Argolist)) )
     axis(side = 2,at=seq(1,totaldepthno,length.out =25),rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))
     mtext("Date",side = 1,line=2.5)
     mtext("Depth(m)",side = 2,line = 2.5)
     title(main = "vertical section of Oxygen")}
 else
-  if(parameter=="oxygen"&& col==FALSE)
+  if(parameter=="oxygen")
   {contour(x = 1:nrow(f(matoxyl)),y = 1:ncol(f(matoxyl)),
-           z =f(matoxyl), xaxt="n",yaxt="n",nlevels = lev)
+           z =f(matoxyl), xaxt="n",yaxt="n",...)
     axis(side = 1,at = 1:length(Argolist),labels = seq(date[[1]],date[[length(Argolist)]],length.out = length(Argolist)) )
     axis(side = 2,at=seq(1,totaldepthno,length.out =25),rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))
     mtext("Date",side = 1,line=2.5)
@@ -169,18 +170,18 @@ else
 #++++++++++++==================++++++=====+++++====+++===========+++=======++++=======
 #chlorophyll
 else
-  if(parameter=="chlorophyll"&& col==TRUE)
+  if(parameter=="chlorophyll")
   {contour(x = 1:nrow(f(matchl)),y = 1:ncol(f(matchl)),
-           z =f(matchl), xaxt="n",yaxt="n",col=matlab.like(15),nlevels = lev)
+           z =f(matchl), xaxt="n",yaxt="n",...)
     axis(side = 1,at = 1:length(Argolist),labels = seq(date[[1]],date[[length(Argolist)]],length.out = length(Argolist)) )
     axis(side = 2,at=seq(1,totaldepthno,length.out =25),rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))
     mtext("Date",side = 1,line=2.5)
     mtext("Depth(m)",side = 2,line = 2.5)
     title(main = "vertical section of Chlorophyll")}
 else
-  if(parameter=="chlorophyll"&& col==FALSE)
+  if(parameter=="chlorophyll")
   {contour(x = 1:nrow(f(matchl)),y = 1:ncol(f(matchl)),
-           z =f(matchl), xaxt="n",yaxt="n",nlevels = lev)
+           z =f(matchl), xaxt="n",yaxt="n",...)
     axis(side = 1,at = 1:length(Argolist),labels = seq(date[[1]],date[[length(Argolist)]],length.out = length(Argolist)) )
     axis(side = 2,at=seq(1,totaldepthno,length.out =25),rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))
     mtext("Date",side = 1,line=2.5)
