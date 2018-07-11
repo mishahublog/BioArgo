@@ -4,10 +4,6 @@
 #
 #================================++++===========++++++======+++++====++++==========+++===========
 
-
-
-
-
 Filledsectionplots<- function(Argolist,parameter,col.val,...)
 #Argolist is a list BioArgo extracted as a output from extractbioArgo function
 #Parameter defines the parameters such as temp, sal,etc
@@ -30,7 +26,7 @@ depth<- lapply(1:length(Argolist),function(x)c(Argolist[[x]]$pressure,rep(NA,Mod
 date.section<- lapply(date,function(x)unique(x[1]))
 lat.section<- lapply(listlat,function(x)unique(x[1]))
 lon.section<- lapply(listlon,function(x)unique(x[1]))
-depth.section<- lapply(depth,function(x)unique(x[1]))
+depth.section<- lapply(depth,function(x)unique(x[length(na.omit(x))]))
 library(plyr)
 nam<- substr(names(Argolist),start = 1,stop = 11)
 xlist<- list(nam,date.section,lat.section,lon.section,depth.section)
@@ -62,7 +58,7 @@ filled.contour(x = 1:nrow(f(mattemp)),y = 1:ncol(f(mattemp)),
                  axis(side = 1,at= 1:length(Argolist),labels = seq(date[[1]],date[[length(Argolist)]],length.out = length(Argolist)))
                  axis(2,at=seq(1,totaldepthno,length.out = 25),
                       labels = rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))},
-               key.title = title(main="Temperature()",cex.main=0.7),
+               key.title = title(main=expression(~degree~C),cex.main=1),
                key.axes = axis(4, seq(mintemp,maxtemp, length.out =  10)),...)
 
 return(xdata1)
@@ -90,7 +86,7 @@ if(parameter=="salinity" ){
                    axis(side = 1,at= 1:length(Argolist),labels = seq(date[[1]],date[[length(Argolist)]],length.out = length(Argolist)))
                    axis(2,at=seq(1,totaldepthno,length.out = 25),
                         labels = rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))},
-                 key.title = title(main="salinity()",cex.main=0.7),
+                 key.title = title(main="PSU"),
                  key.axes = axis(4, seq(minsal, maxsal, length.out =  10)),...)
   
   return(xdata1)
@@ -116,7 +112,7 @@ if(parameter=="oxygen" ){
                    axis(side = 1,at= 1:length(Argolist),labels = seq(date[[1]],date[[length(Argolist)]],length.out = length(Argolist)))
                    axis(2,at=seq(1,totaldepthno,length.out = 25),
                         labels = rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))},
-                 key.title = title(main="Oxygen()",cex.main=0.7),
+                 key.title = title(main=expression(paste(mu,"mol/kg")),cex.main=1),
                  key.axes = axis(4, seq(minoxy, maxoxy, length.out =  10)),...)
   
   return(xdata1)
@@ -140,7 +136,7 @@ if(parameter=="chlorophyll" ){
                    axis(side = 1,at= 1:length(Argolist),labels = seq(date[[1]],date[[length(Argolist)]],length.out = length(Argolist)))
                    axis(2,at=seq(1,totaldepthno,length.out = 25),
                         labels = rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))},
-                 key.title = title(main="chlorophyll()",cex.main=0.7),
+                 key.title = title(main=expression("mg"/{m}^3)),
                  key.axes = axis(4, seq(minchl,maxchl, length.out =  10)),...)
   
   return(xdata1)}
