@@ -8,7 +8,7 @@
 
 
 
-Filledsectionplots<- function(Argolist,parameter,col.val,cont.strp,...)
+Filledsectionplots<- function(Argolist,parameter,col.val,...)
 #Argolist is a list BioArgo extracted as a output from extractbioArgo function
 #Parameter defines the parameters such as temp, sal,etc
 #col.val amount of colours used in the palette, Here we used matlab.like from colourramp
