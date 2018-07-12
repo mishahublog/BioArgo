@@ -7,7 +7,9 @@ ExtractBioArgo<- function(bioarg) {
   library(RNetCDF)
   #Read .nc files
   argo<- read.nc(open.nc(bioarg))
-  chl<- argo$CHLA[,5]
+  
+  ifelse(test = sum(is.na(argo$CHLA[,5]>0)),yes = chl<- argo$CHLA[,4],no = chl<- argo$CHLA[,5] )
+  
   psal<- c(na.omit(argo$PSAL[,2]),na.omit(argo$PSAL[,1]))
   oxy<- c(na.omit(argo$DOXY[,4]),na.omit(argo$DOXY[,3]))
   ifelse(test = !is.null(argo$TEMP),
@@ -15,9 +17,7 @@ ExtractBioArgo<- function(bioarg) {
          no = temp<- c(na.omit(argo$TEMP_DOXY[,4]),na.omit(argo$TEMP_DOXY[,3])) )
   
   # temp<- c(na.omit(argo$TEMP[,2]),na.omit(argo$TEMP[,1]))
-  pres<- argo$PRES[,5]
-  
-  
+  ifelse(test = sum(is.na(argo$PRES[,5]>0)),yes = pres<- argo$PRES[,4],no = pres<- argo$PRES[,5] )
   
   # if salinity not available
   #================================================================================================================
@@ -54,16 +54,23 @@ ExtractBioArgo<- function(bioarg) {
     
     #Trim everthing with trimfac for making a dataframe 
     assign(paste("Bioargo",unique(argo$CYCLE_NUMBER),unique(argo$PLATFORM_NUMBER),sep = "-"),
-           data.frame(Date=date,latitude=lat,longitude=lon,pressure=pres[1:trimfac],
+           data.frame(Date=date[1:trimfac],latitude=lat[1:trimfac],longitude=lon[1:trimfac],pressure=pres[1:trimfac],
                       temperature=temp[1:trimfac],salinity=psal[1:trimfac],
                       oxygen=oxy[1:trimfac],chlorophyll=chl[1:trimfac]),envir = .GlobalEnv)
     
     
     #Data for listing
-    data1<- data.frame(Date=date,latitude=lat,longitude=lon,pressure=pres[1:trimfac],
+    data1<- data.frame(Date=date[1:trimfac],latitude=lat[1:trimfac],longitude=lon[1:trimfac],pressure=pres[1:trimfac],
                        temperature=temp[1:trimfac],salinity=psal[1:trimfac],
                        oxygen=oxy[1:trimfac],chlorophyll=chl[1:trimfac])
+    
+    
+    
+    
     return(data1)
+    
+    
+    
     
     }
   
