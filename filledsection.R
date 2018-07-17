@@ -29,8 +29,6 @@ depth.section<- lapply(depth,function(x)unique(x[length(na.omit(x))]))
 
 
 
-
-
 library(plyr)
 nam<- substr(names(Argolist),start = 1,stop = 11)
 xlist<- list(cycleno,nam,date.section,lat.section,lon.section,depth.section)
