@@ -35,8 +35,9 @@ ExtractBioArgo<- function(bioarg) {
     #find least length 
     trimfac<- min(as.numeric(lapply(para, function(x)length(x))))
     date<- rep(as.Date(as.numeric(unique(argo$JULD)),origin="1950-01-01"),trimfac)
-    lat<-  rep(as.numeric(Most_freq(argo$LATITUDE),trimfac))
-    lon<-  rep(as.numeric(Most_freq(argo$LONGITUDE),trimfac))
+    lat<-  rep(as.numeric(Most_freq(argo$LATITUDE)),trimfac)
+    lon<-  rep(as.numeric(Most_freq(argo$LONGITUDE)),trimfac)
+    
     
     #Trim everthing with trimfac for making a dataframe 
     assign(paste("Bioargo",unique(argo$CYCLE_NUMBER),unique(argo$PLATFORM_NUMBER),sep = "-"),
