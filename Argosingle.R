@@ -8,7 +8,7 @@ ExtractBioArgo<- function(bioarg) {
   #Read .nc files
   argo<- read.nc(open.nc(bioarg))
   if(is.null(argo$CHLA)){stop("Chlorophyll missing:-Not a BioArgo")}
-  else
+  
   ifelse(test = sum(is.na(argo$CHLA[,5]>0)),yes = chl<- argo$CHLA[,4],no = chl<- argo$CHLA[,5] )
  
     oxy<- c(na.omit(argo$DOXY[,4]),na.omit(argo$DOXY[,3]))
@@ -19,6 +19,10 @@ ExtractBioArgo<- function(bioarg) {
   ifelse(test = !is.null(argo$TEMP),
          yes =temp<- c(na.omit(argo$TEMP[,2]),na.omit(argo$TEMP[,1])),
          no = temp<- c(na.omit(argo$TEMP_DOXY[,4]),na.omit(argo$TEMP_DOXY[,3])) )
+  Most_freq <- function(x) {
+    ux <- unique(x)
+    ux[which.max(tabulate(match(x, ux)))]
+  }
   
  
   
@@ -31,8 +35,8 @@ ExtractBioArgo<- function(bioarg) {
     #find least length 
     trimfac<- min(as.numeric(lapply(para, function(x)length(x))))
     date<- rep(as.Date(as.numeric(unique(argo$JULD)),origin="1950-01-01"),trimfac)
-    lat<-  rep(as.numeric(unique(argo$LATITUDE)),trimfac)
-    lon<-  rep(as.numeric(unique(argo$LONGITUDE)),trimfac)
+    lat<-  rep(as.numeric(Most_freq(argo$LATITUDE),trimfac))
+    lon<-  rep(as.numeric(Most_freq(argo$LONGITUDE),trimfac))
     
     #Trim everthing with trimfac for making a dataframe 
     assign(paste("Bioargo",unique(argo$CYCLE_NUMBER),unique(argo$PLATFORM_NUMBER),sep = "-"),
@@ -55,8 +59,8 @@ ExtractBioArgo<- function(bioarg) {
     #find least length 
     trimfac<- min(as.numeric(lapply(para, function(x)length(x))))
     date<- rep(as.Date(as.numeric(unique(argo$JULD)),origin="1950-01-01"),trimfac)
-    lat<-  rep(as.numeric(unique(argo$LATITUDE)),trimfac)
-    lon<-  rep(as.numeric(unique(argo$LONGITUDE)),trimfac)
+    lat<-  rep(as.numeric(Most_freq(argo$LATITUDE)),trimfac)
+    lon<-  rep(as.numeric(Most_freq(argo$LONGITUDE)),trimfac)
     cycle.no<-  rep(as.numeric(unique(argo$CYCLE_NUMBER)),trimfac)
     #Trim everthing with trimfac for making a dataframe 
     assign(paste("Bioargo",unique(argo$CYCLE_NUMBER),unique(argo$PLATFORM_NUMBER),sep = "-"),
