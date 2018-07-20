@@ -3,19 +3,11 @@
 ### Batch processsing of Argo files 
 ##====================================================================================
 
-batch<- function(filenames,database){
+batch<- function(filenames){
 
-if(database=="LAS")  {
+
   
-batchlist<- lapply(filenames,function(x)ExtractBioArgo(x,"LAS"))
+batchlist<- lapply(filenames,function(x)ExtractBioArgo(x))
 names(batchlist)<- filenames
 return(batchlist)}
 
-else
-{
-  if(database=="NULL")
-    batchlist<- lapply(filenames,function(x)ExtractBioArgo(x,"NULL"))
-  names(batchlist)<- filenames
-  return(batchlist)}
-    
-}
