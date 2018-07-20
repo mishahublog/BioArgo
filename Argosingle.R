@@ -2,26 +2,24 @@
 # Extract data from BioArgo to dataframe
 #".nc" files are selected to process
 #########################################################
-ExtractBioArgo<- function(bioarg,database) {
+ExtractBioArgo<- function(bioarg) {
   
   library(RNetCDF)
   #Read .nc files
   argo<- read.nc(open.nc(bioarg))
-  
+  if(is.null(argo$CHLA)){stop("Chlorophyll missing:-Not a BioArgo")}
+  else
   ifelse(test = sum(is.na(argo$CHLA[,5]>0)),yes = chl<- argo$CHLA[,4],no = chl<- argo$CHLA[,5] )
+ 
+    oxy<- c(na.omit(argo$DOXY[,4]),na.omit(argo$DOXY[,3]))
+  
   
   psal<- c(na.omit(argo$PSAL[,2]),na.omit(argo$PSAL[,1]))
-  oxy<- c(na.omit(argo$DOXY[,4]),na.omit(argo$DOXY[,3]))
+  
   ifelse(test = !is.null(argo$TEMP),
          yes =temp<- c(na.omit(argo$TEMP[,2]),na.omit(argo$TEMP[,1])),
          no = temp<- c(na.omit(argo$TEMP_DOXY[,4]),na.omit(argo$TEMP_DOXY[,3])) )
   
-  # temp<- c(na.omit(argo$TEMP[,2]),na.omit(argo$TEMP[,1]))
-  if (database=="LAS"){
-  ifelse(test = sum(is.na(argo$PRES[,5]>0)),yes = pres<- argo$PRES[,5],no = pres<- argo$PRES[,4] )}
-  else
-  if(database=="NULL")
-    {ifelse(test = sum(is.na(argo$PRES[,5]>0)),yes = pres<- argo$PRES[,4],no = pres<- argo$PRES[,5] )}
  
   
   
@@ -48,6 +46,8 @@ ExtractBioArgo<- function(bioarg,database) {
     
     
   }
+  
+  
   
   else 
     message("Horray!!, All paramters available")
