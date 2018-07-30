@@ -10,24 +10,24 @@ plot_BioArgo<- function(x,temperature=FALSE,salinity=FALSE,
   {
 # make it true, when you want only temperature
    if(temperature==TRUE){
-    plot(x[['temperature']],-x[['pressure']],xlab = names(x)[5], ylab = names(x)[4])
+    plot(x[[6]],-x[[5]],xlab = names(x)[6], ylab = names(x)[5])
      axis(3)
      axis(2)
-     mtext(names(x)[5],side = 3,line = 2)
-     mtext(names(x)[4],side = 2,line = 3)
+     mtext(names(x)[6],side = 3,line = 2)
+     mtext(names(x)[5],side = 2,line = 3)
      }
   # make it true, when you want only salinity
  else
   if(salinity==TRUE){
-    plot(x[[6]],-x[[4]],xlab = names(x)[6], ylab = names(x)[4])}
+    plot(x[[7]],-x[[5]],xlab = names(x)[7], ylab = names(x)[5])}
   # make it true, when you want only oxygen
   else
   if(oxygen==TRUE){
-    plot(x[[7]],-x[[4]],xlab = names(x)[7], ylab = names(x)[4])}
+    plot(x[[8]],-x[[5]],xlab = names(x)[8], ylab = names(x)[5])}
   # make it true, when you want only chlorophyll
   else
   if(chlorophyll==TRUE){
-    plot(x[[8]],-x[[4]],xlab = names(x)[8], ylab = names(x)[4])}
+    plot(x[[9]],-x[[5]],xlab = names(x)[9], ylab = names(x)[5])}
  #if you don't have any option this wil plot the whole graph in a panel
    else
   {
@@ -35,29 +35,29 @@ plot_BioArgo<- function(x,temperature=FALSE,salinity=FALSE,
      par(mfrow=c(2,2))
     par(mar=c(2,3,2,2))
   #plot all the four plots 
-      plot(x[[5]],-x[[4]],xlab = "", ylab = names(x)[4],xaxt="n",type = "l",col="red")
-    axis(3)
-    axis(2)
-    mtext(names(x)[5],side = 3,line = 2)
-    mtext(names(x)[4],side = 2,line = 3)
-    
-    plot(x[[6]],-x[[4]],xlab = "", ylab = names(x)[4],xaxt="n",yaxt="n",type = "l",col="blue")
+      plot(x[[6]],-x[[5]],xlab = "", ylab = names(x)[5],xaxt="n",type = "l",col="red")
     axis(3)
     axis(2)
     mtext(names(x)[6],side = 3,line = 2)
-    mtext(names(x)[4],side = 2,line = 3)
+    mtext(names(x)[5],side = 2,line = 3)
     
-    plot(x[[7]],-x[[4]],xlab = "", ylab = names(x)[4],xaxt="n",yaxt="n",type = "l",col="orange")
+    plot(x[[7]],-x[[5]],xlab = "", ylab = names(x)[5],xaxt="n",yaxt="n",type = "l",col="blue")
     axis(3)
     axis(2)
     mtext(names(x)[7],side = 3,line = 2)
-    mtext(names(x)[4],side = 2,line = 3)
+    mtext(names(x)[5],side = 2,line = 3)
     
-    plot(x[[8]],-x[[4]],xlab = "", ylab = names(x)[4],xaxt="n",yaxt="n",type = "l",col="green")
+    plot(x[[8]],-x[[5]],xlab = "", ylab = names(x)[5],xaxt="n",yaxt="n",type = "l",col="orange")
     axis(3)
     axis(2)
     mtext(names(x)[8],side = 3,line = 2)
-    mtext(names(x)[4],side = 2,line = 3)
+    mtext(names(x)[5],side = 2,line = 3)
+    
+    plot(x[[9]],-x[[5]],xlab = "", ylab = names(x)[4],xaxt="n",yaxt="n",type = "l",col="green")
+    axis(3)
+    axis(2)
+    mtext(names(x)[9],side = 3,line = 2)
+    mtext(names(x)[5],side = 2,line = 3)
     library(crayon)
     cat(blue("follow pepprbook.com for do More in R "))
   }
