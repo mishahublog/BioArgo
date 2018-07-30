@@ -7,55 +7,55 @@ bioArgo_Ranger<- function(batchlist,parameter){
   
 if(parameter=="latitude"){
   
-r<-range(lapply(1:length(batchlist),function(x)as.numeric(unique(test[[x]]$latitude))))
+r<-range(lapply(1:length(batchlist),function(x)as.numeric(unique(batchlist[[x]]$latitude))))
 return(r)
 }
 
   if(parameter=="longitude"){
     
-   r<- range(lapply(1:length(batchlist),function(x)as.numeric(unique(test[[x]]$longitude))))
+   r<- range(lapply(1:length(batchlist),function(x)as.numeric(unique(batchlist[[x]]$longitude))))
    return(r)
    }
  
    if(parameter=="cyclono"){
     
-   r<- range(lapply(1:length(batchlist),function(x)as.numeric(unique(test[[x]]$cycle.no))))
+   r<- range(lapply(1:length(batchlist),function(x)as.numeric(unique(batchlist[[x]]$cycle.no))))
      return(r)
      }
   
   if(parameter=="date"){
     
-   r<- range(lapply(1:length(batchlist),function(x)as.numeric(unique(test[[x]]$Date))))
+   r<- range(lapply(1:length(batchlist),function(x)as.numeric(unique(batchlist[[x]]$Date))))
    return(r)
    }
   
   if(parameter=="pressure"){
     
-    r<- range(lapply(1:length(batchlist),function(x)as.numeric(unique(test[[x]]$pressure))))
+    r<- range(lapply(1:length(batchlist),function(x)as.numeric(unique(batchlist[[x]]$pressure))))
     return(r)
     }
   
   if(parameter=="temperature"){
     
-   r<-  range(lapply(1:length(batchlist),function(x)as.numeric(unique(test[[x]]$temperature))))
+   r<-  range(lapply(1:length(batchlist),function(x)as.numeric(unique(batchlist[[x]]$temperature))))
     return(r)
     }
   
   if(parameter=="salinity"){
     
-  r<- range(lapply(1:length(batchlist),function(x)as.numeric(unique(test[[x]]$salinity))))
+  r<- range(lapply(1:length(batchlist),function(x)as.numeric(unique(batchlist[[x]]$salinity))))
   return(r)
   }
   
   
   if(parameter=="oxygen"){
     
-   r<- range(lapply(1:length(batchlist),function(x)as.numeric(unique(test[[x]]$oxygen))))
+   r<- range(lapply(1:length(batchlist),function(x)as.numeric(unique(batchlist[[x]]$oxygen))))
    return(r)
    }
   if(parameter=="chlorophyll"){
     
-    r<- range(lapply(1:length(batchlist),function(x)as.numeric(unique(test[[x]]$chlorophyll))))
+    r<- range(lapply(1:length(batchlist),function(x)as.numeric(unique(batchlist[[x]]$chlorophyll))))
     return(r)
     }
   

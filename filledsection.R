@@ -10,8 +10,12 @@ Filledsectionplots<- function(Argolist,parameter,col.val,...)
   #col.val amount of colours used in the palette, Here we used matlab.like from colourramp
   #create a max function for neutralize column lengths
 {maxfac<- max(as.numeric(lapply(1:length(Argolist),function(x)length(Argolist[[x]]$pressure))))
-listlat<- lapply(1:length(Argolist),function(x)c(Argolist[[x]]$latitude,rep(NA,Mod(length(Argolist[[x]]$latitude)-(maxfac)))))
-listlon<- lapply(1:length(Argolist),function(x)c(Argolist[[x]]$longitude,rep(NA,Mod(length(Argolist[[x]]$longitude)-(maxfac)))))
+Most_freq <- function(x) {
+    ux <- unique(x)
+    ux[which.max(tabulate(match(x, ux)))]
+   }
+listlat<- lapply(1:length(Argolist),function(x)Most_freq(c(Argolist[[x]]$latitude,rep(NA,Mod(length(Argolist[[x]]$latitude)-(maxfac))))))
+listlon<- lapply(1:length(Argolist),function(x)Most_freq(c(Argolist[[x]]$longitude,rep(NA,Mod(length(Argolist[[x]]$longitude)-(maxfac))))))
 listtemp<- lapply(1:length(Argolist),function(x)c(Argolist[[x]]$temperature,rep(NA,Mod(length(Argolist[[x]]$temperature)-(maxfac)))))
 listsal<- lapply(1:length(Argolist),function(x)c(Argolist[[x]]$salinity,rep(NA,Mod(length(Argolist[[x]]$salinity)-(maxfac)))))
 listoxy<- lapply(1:length(Argolist),function(x)c(Argolist[[x]]$oxygen,rep(NA,Mod(length(Argolist[[x]]$oxygen)-(maxfac)))))
@@ -21,8 +25,8 @@ Extracdate<- lapply(1:length(Argolist),function(x)unique(Argolist[[x]]$Date))
 date<- lapply(1:length(Extracdate),function(x)as.Date(Extracdate[[x]],origin="1950-01-01"))
 depth<- lapply(1:length(Argolist),function(x)c(Argolist[[x]]$pressure,rep(NA,Mod(length(Argolist[[x]]$pressure)-(maxfac)))))
 date.section<- lapply(date,function(x)unique(x[1]))
-lat.section<- lapply(listlat,function(x)unique(x[1]))
-lon.section<- lapply(listlon,function(x)unique(x[1]))
+lat.section<- lapply(listlat,function(x)Most_freq(unique(x[1])))
+lon.section<- lapply(listlon,function(x)Most_freq(unique(x[1])))
 cycleno<- lapply(listcycle,function(x)unique(x[1]))
 depth.section<- lapply(depth,function(x)unique(x[length(na.omit(x))]))
 
