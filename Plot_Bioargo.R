@@ -10,7 +10,12 @@ plot_BioArgo<- function(x,temperature=FALSE,salinity=FALSE,
   {
 # make it true, when you want only temperature
    if(temperature==TRUE){
-    plot(x[['temperature']],-x[['pressure']],xlab = names(x)[5], ylab = names(x)[4])}
+    plot(x[['temperature']],-x[['pressure']],xlab = names(x)[5], ylab = names(x)[4])
+     axis(3)
+     axis(2)
+     mtext(names(x)[5],side = 3,line = 2)
+     mtext(names(x)[4],side = 2,line = 3)
+     }
   # make it true, when you want only salinity
  else
   if(salinity==TRUE){
