@@ -25,7 +25,7 @@ return(r)
   
   if(parameter=="date"){
     
-   r<- range(lapply(1:length(batchlist),function(x)as.numeric(unique(batchlist[[x]]$Date))))
+   r<- range(ldply(lapply(1:length(batchlist),function(x)x<- as.Date(unique(batchlist[[x]]$Date),origin="1950-01-01")[1]))[,1])
    return(r)
    }
   
