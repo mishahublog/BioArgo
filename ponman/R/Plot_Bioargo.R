@@ -8,12 +8,20 @@
 #' plotting overview of graphs, with options to plot single graphs
 #'This function returns all the plots in a single functions
 #'Always be trimmed before plotting according to your needs
-#' @param x A single BioArgo file (return from extract bioArgo)you want to plot.
-#' @param temperature? Defaults to FALSE
+#'@param  x A single BioArgo file(This argument plots all paramters in a panel)
+#'@param  temperature? Defaults to FALSE
 #'@param  salinity? Defaults to FALSE
 #'@param  oxygen? Defaults to FALSE
 #'@param  chlorophyll/flouroscence? Defaults to FALSE
-#'@param  Only x  option selected as TRUE it excute an overview plot with all four parameters
+#'@return A graphical plot of hydrography
+#'@examples plot_BioArgo(float1)# "float1" return from Extract_bioArgo.
+#'@examples plot_Bioargo(float1,temperature=TRUE)
+#'@examples plot_Bioargo(float1,salinity=TRUE)
+#'@export crayon
+#'
+#'
+#'
+#'
 plot_BioArgo<- function(x,temperature=FALSE,salinity=FALSE,
                         oxygen=FALSE,chlorophyll=FALSE,...)
   {
