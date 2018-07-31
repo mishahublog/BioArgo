@@ -13,7 +13,9 @@
 #'@param  salinity? Defaults to FALSE
 #'@param  oxygen? Defaults to FALSE
 #'@param  chlorophyll/flouroscence? Defaults to FALSE
+#'@param ... extended to other plot parameters
 #'@return A graphical plot of hydrography
+#'@author Midhun shah Hussain
 #'@examples plot_BioArgo(float1)# "float1" return from Extract_bioArgo.
 #'@examples plot_Bioargo(float1,temperature=TRUE)
 #'@examples plot_Bioargo(float1,salinity=TRUE)
@@ -27,7 +29,7 @@ plot_BioArgo<- function(x,temperature=FALSE,salinity=FALSE,
   {
 # make it true, when you want only temperature
    if(temperature==TRUE){
-     plot(x[[6]],-x[[5]],xlab = "", ylab = names(x)[5],xaxt="n",yaxt="n",type = "l",col="red",...)
+     plot(x[[6]],-x[[5]],xlab = "", ylab = names(x)[5],xaxt="n",yaxt="n",type = "l",...)
      axis(3)
      axis(2,at = seq(min(-x[5]),max(-x[5]),by = 100),labels = rev(round(seq(min(x[5]),max(x[5]),by = 100))))
      mtext(names(x)[6],side = 3,line = 2)
@@ -36,7 +38,7 @@ plot_BioArgo<- function(x,temperature=FALSE,salinity=FALSE,
   # make it true, when you want only salinity
  else
   if(salinity==TRUE){
-    plot(x[[7]],-x[[5]],xlab = "", ylab = names(x)[5],xaxt="n",yaxt="n",type = "l",col="blue",...)
+    plot(x[[7]],-x[[5]],xlab = "", ylab = names(x)[5],xaxt="n",yaxt="n",type = "l",...)
     axis(3)
     axis(2,at = seq(min(-x[5]),max(-x[5]),by = 100),labels = rev(round(seq(min(x[5]),max(x[5]),by = 100))))
     mtext(names(x)[7],side = 3,line = 2)
@@ -45,7 +47,7 @@ plot_BioArgo<- function(x,temperature=FALSE,salinity=FALSE,
   # make it true, when you want only oxygen
   else
   if(oxygen==TRUE){
-    plot(x[[8]],-x[[5]],xlab = "", ylab = names(x)[5],xaxt="n",yaxt="n",type = "l",col="orange",...)
+    plot(x[[8]],-x[[5]],xlab = "", ylab = names(x)[5],xaxt="n",yaxt="n",type = "l",...)
     axis(3)
     axis(2,at = seq(min(-x[5]),max(-x[5]),by = 100),labels = rev(round(seq(min(x[5]),max(x[5]),by = 100))))
     mtext(names(x)[8],side = 3,line = 2)
@@ -54,7 +56,7 @@ plot_BioArgo<- function(x,temperature=FALSE,salinity=FALSE,
   # make it true, when you want only chlorophyll
   else
   if(chlorophyll==TRUE){
-    plot(x[[9]],-x[[5]],xlab = "", ylab = names(x)[4],xaxt="n",yaxt="n",type = "l",col="green",...)
+    plot(x[[9]],-x[[5]],xlab = "", ylab = names(x)[4],xaxt="n",yaxt="n",type = "l",...)
     axis(3)
     axis(2,at = seq(min(-x[5]),max(-x[5]),by = 100),labels = rev(round(seq(min(x[5]),max(x[5]),by = 100))))
     mtext(names(x)[9],side = 3,line = 2)

@@ -10,6 +10,8 @@ plot_BioArgo(x, temperature = FALSE, salinity = FALSE,
 \arguments{
 \item{x}{A single BioArgo file(This argument plots all paramters in a panel)}
 
+\item{...}{extended to other plot parameters}
+
 \item{temperature?}{Defaults to FALSE}
 
 \item{salinity?}{Defaults to FALSE}
@@ -30,4 +32,7 @@ Always be trimmed before plotting according to your needs
 plot_BioArgo(float1)# "float1" return from Extract_bioArgo.
 plot_Bioargo(float1,temperature=TRUE)
 plot_Bioargo(float1,salinity=TRUE)
+}
+\author{
+Midhun shah Hussain
 }
