@@ -6,56 +6,71 @@
 #This function returns all the plots in a single functions
 # Always be trimmed before plotting according to your needs
 plot_BioArgo<- function(x,temperature=FALSE,salinity=FALSE,
-                        oxygen=FALSE,chlorophyll=FALSE)
+                        oxygen=FALSE,chlorophyll=FALSE,...)
   {
 # make it true, when you want only temperature
    if(temperature==TRUE){
-    plot(x[[6]],-x[[5]],xlab = names(x)[6], ylab = names(x)[5])
+     plot(x[[6]],-x[[5]],xlab = "", ylab = names(x)[5],xaxt="n",yaxt="n",type = "l",col="red",...)
      axis(3)
-     axis(2)
+     axis(2,at = seq(min(-x[5]),max(-x[5]),by = 100),labels = rev(round(seq(min(x[5]),max(x[5]),by = 100))))
      mtext(names(x)[6],side = 3,line = 2)
      mtext(names(x)[5],side = 2,line = 3)
      }
   # make it true, when you want only salinity
  else
   if(salinity==TRUE){
-    plot(x[[7]],-x[[5]],xlab = names(x)[7], ylab = names(x)[5])}
+    plot(x[[7]],-x[[5]],xlab = "", ylab = names(x)[5],xaxt="n",yaxt="n",type = "l",col="blue",...)
+    axis(3)
+    axis(2,at = seq(min(-x[5]),max(-x[5]),by = 100),labels = rev(round(seq(min(x[5]),max(x[5]),by = 100))))
+    mtext(names(x)[7],side = 3,line = 2)
+    mtext(names(x)[5],side = 2,line = 3)
+    }
   # make it true, when you want only oxygen
   else
   if(oxygen==TRUE){
-    plot(x[[8]],-x[[5]],xlab = names(x)[8], ylab = names(x)[5])}
+    plot(x[[8]],-x[[5]],xlab = "", ylab = names(x)[5],xaxt="n",yaxt="n",type = "l",col="orange",...)
+    axis(3)
+    axis(2,at = seq(min(-x[5]),max(-x[5]),by = 100),labels = rev(round(seq(min(x[5]),max(x[5]),by = 100))))
+    mtext(names(x)[8],side = 3,line = 2)
+    mtext(names(x)[5],side = 2,line = 3)
+    }
   # make it true, when you want only chlorophyll
   else
   if(chlorophyll==TRUE){
-    plot(x[[9]],-x[[5]],xlab = names(x)[9], ylab = names(x)[5])}
+    plot(x[[9]],-x[[5]],xlab = "", ylab = names(x)[4],xaxt="n",yaxt="n",type = "l",col="green",...)
+    axis(3)
+    axis(2,at = seq(min(-x[5]),max(-x[5]),by = 100),labels = rev(round(seq(min(x[5]),max(x[5]),by = 100))))
+    mtext(names(x)[9],side = 3,line = 2)
+    mtext(names(x)[5],side = 2,line = 3)
+    }
  #if you don't have any option this wil plot the whole graph in a panel
    else
   {
    #set parameters 
-     par(mfrow=c(2,2))
-    par(mar=c(2,3,2,2))
+    par(mfrow=c(2,2))
+    par(mar=c(2,4,4,2))
   #plot all the four plots 
-      plot(x[[6]],-x[[5]],xlab = "", ylab = names(x)[5],xaxt="n",type = "l",col="red")
+    plot(x[[6]],-x[[5]],xlab = "", ylab = "",xaxt="n",yaxt="n",type = "l",col="red",...)
     axis(3)
-    axis(2)
+    axis(2,at = seq(min(-x[5]),max(-x[5]),by = 100),labels = rev(round(seq(min(x[5]),max(x[5]),by = 100))))
     mtext(names(x)[6],side = 3,line = 2)
     mtext(names(x)[5],side = 2,line = 3)
     
-    plot(x[[7]],-x[[5]],xlab = "", ylab = names(x)[5],xaxt="n",yaxt="n",type = "l",col="blue")
+    plot(x[[7]],-x[[5]],xlab = "", ylab = "",xaxt="n",yaxt="n",type = "l",col="blue",...)
     axis(3)
-    axis(2)
+    axis(2,at = seq(min(-x[5]),max(-x[5]),by = 100),labels = rev(round(seq(min(x[5]),max(x[5]),by = 100))))
     mtext(names(x)[7],side = 3,line = 2)
     mtext(names(x)[5],side = 2,line = 3)
     
-    plot(x[[8]],-x[[5]],xlab = "", ylab = names(x)[5],xaxt="n",yaxt="n",type = "l",col="orange")
+    plot(x[[8]],-x[[5]],xlab = "", ylab = "",xaxt="n",yaxt="n",type = "l",col="orange",...)
     axis(3)
-    axis(2)
+    axis(2,at = seq(min(-x[5]),max(-x[5]),by = 100),labels = rev(round(seq(min(x[5]),max(x[5]),by = 100))))
     mtext(names(x)[8],side = 3,line = 2)
     mtext(names(x)[5],side = 2,line = 3)
     
-    plot(x[[9]],-x[[5]],xlab = "", ylab = names(x)[4],xaxt="n",yaxt="n",type = "l",col="green")
+    plot(x[[9]],-x[[5]],xlab = "", ylab = "",xaxt="n",yaxt="n",type = "l",col="green",...)
     axis(3)
-    axis(2)
+    axis(2,at = seq(min(-x[5]),max(-x[5]),by = 100),labels = rev(round(seq(min(x[5]),max(x[5]),by = 100))))
     mtext(names(x)[9],side = 3,line = 2)
     mtext(names(x)[5],side = 2,line = 3)
     library(crayon)
