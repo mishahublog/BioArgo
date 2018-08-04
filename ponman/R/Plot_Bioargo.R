@@ -25,7 +25,7 @@
 #'
 #'
 plot_BioArgo<- function(x,temperature=FALSE,salinity=FALSE,
-                        oxygen=FALSE,chlorophyll=FALSE,...)
+                        oxygen=FALSE,chlorophyll=FALSE,backscatter=FALSE,...)
   {
 # make it true, when you want only temperature
    if(temperature==TRUE){
@@ -56,11 +56,19 @@ plot_BioArgo<- function(x,temperature=FALSE,salinity=FALSE,
   # make it true, when you want only chlorophyll
   else
   if(chlorophyll==TRUE){
-    plot(x[[9]],-x[[5]],xlab = "", ylab = names(x)[4],xaxt="n",yaxt="n",type = "l",...)
+    plot(x[[9]],-x[[5]],xlab = "", ylab = names(x)[5],xaxt="n",yaxt="n",type = "l",...)
     axis(3)
     axis(2,at = seq(min(-x[5]),max(-x[5]),by = 100),labels = rev(round(seq(min(x[5]),max(x[5]),by = 100))))
     mtext(names(x)[9],side = 3,line = 2)
     mtext(names(x)[5],side = 2,line = 3)
+  }
+  else
+    if(backscatter==TRUE){
+      plot(x[[10]],-x[[5]],xlab = "", ylab = names(x)[5],xaxt="n",yaxt="n",type = "l",...)
+      axis(3)
+      axis(2,at = seq(min(-x[5]),max(-x[5]),by = 100),labels = rev(round(seq(min(x[5]),max(x[5]),by = 100))))
+      mtext(names(x)[10],side = 3,line = 2)
+      mtext(names(x)[5],side = 2,line = 3)
     }
  #if you don't have any option this wil plot the whole graph in a panel
    else

@@ -31,8 +31,8 @@ ExtractBioArgo<- function(bioarg) {
   if(is.null(argo$CHLA)){stop("Chlorophyll missing:-Not a BioArgo")}
   
   ifelse(test = sum(is.na(argo$CHLA[,5]>0)),yes = chl<- argo$CHLA[,4],no = chl<- argo$CHLA[,5] )
- 
-    oxy<- c(na.omit(argo$DOXY[,4]),na.omit(argo$DOXY[,3]))
+  
+  oxy<- c(na.omit(argo$DOXY[,4]),na.omit(argo$DOXY[,3]))
   
   
   psal<- c(na.omit(argo$PSAL[,2]),na.omit(argo$PSAL[,1]))
@@ -45,10 +45,12 @@ ExtractBioArgo<- function(bioarg) {
     ux[which.max(tabulate(match(x, ux)))]
   }
   
- 
+  bsct<- argo$BBP700[,5]
   
   
-   # if salinity not available
+  
+  
+  # if salinity not available
   #================================================================================================================
   if (is.null(psal)){
     warning("salinity missing")
@@ -64,10 +66,10 @@ ExtractBioArgo<- function(bioarg) {
     assign(paste("Bioargo",unique(argo$CYCLE_NUMBER),unique(argo$PLATFORM_NUMBER),sep = "-"),
            data.frame(Date=date[1:trimfac],latitude=lat[1:trimfac],longitude=lon[1:trimfac],cycle.no=cycle.no[1:trimfac],pressure=pres[1:trimfac],
                       temperature=temp[1:trimfac],
-                      oxygen=oxy[1:trimfac],chlorophyll=chl[1:trimfac]),envir = .GlobalEnv)   
+                      oxygen=oxy[1:trimfac],chlorophyll=chl[1:trimfac],backscatter= bsct[1:trimfac]),envir = .GlobalEnv)   
     
     data0<- data.frame(Date=date[1:trimfac],latitude=lat[1:trimfac],longitude=lon[1:trimfac],cycle.no=cycle.no[1:trimfac],pressure=pres[1:trimfac],
-                       temperature=temp[1:trimfac],oxygen=oxy[1:trimfac],chlorophyll=chl[1:trimfac])
+                       temperature=temp[1:trimfac],oxygen=oxy[1:trimfac],chlorophyll=chl[1:trimfac],backscatter= bsct[1:trimfac])
     return(data0)
     
     
@@ -88,13 +90,13 @@ ExtractBioArgo<- function(bioarg) {
     assign(paste("Bioargo",unique(argo$CYCLE_NUMBER),unique(argo$PLATFORM_NUMBER),sep = "-"),
            data.frame(Date=date[1:trimfac],latitude=lat[1:trimfac],longitude=lon[1:trimfac],cycle.no=cycle.no[1:trimfac],pressure=pres[1:trimfac],
                       temperature=temp[1:trimfac],salinity=psal[1:trimfac],
-                      oxygen=oxy[1:trimfac],chlorophyll=chl[1:trimfac]),envir = .GlobalEnv)
+                      oxygen=oxy[1:trimfac],chlorophyll=chl[1:trimfac],backscatter= bsct[1:trimfac]),envir = .GlobalEnv)
     
     
     #Data for listing
     data1<- data.frame(Date=date[1:trimfac],latitude=lat[1:trimfac],longitude=lon[1:trimfac],cycle.no=cycle.no[1:trimfac],pressure=pres[1:trimfac],
                        temperature=temp[1:trimfac],salinity=psal[1:trimfac],
-                       oxygen=oxy[1:trimfac],chlorophyll=chl[1:trimfac])
+                       oxygen=oxy[1:trimfac],chlorophyll=chl[1:trimfac],backscatter= bsct[1:trimfac])
     
     
     
@@ -108,9 +110,4 @@ ExtractBioArgo<- function(bioarg) {
   
   
 }
-
-
-
-
-
 
