@@ -14,7 +14,7 @@ The datasets can be download from following repositories
 ExtractBioArgo(bioarg)
 }
 \arguments{
-\item{bioarg}{= A .nc file from the following sources.}
+\item{bioarg}{A nc file from the following sources.}
 }
 \description{
 Extract BioArgo from  raw file in .nc formats.This function is only applicable to BioArgos not for usual Argo floats

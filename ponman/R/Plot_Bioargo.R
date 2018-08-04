@@ -13,13 +13,13 @@
 #'@param  salinity? Defaults to FALSE
 #'@param  oxygen? Defaults to FALSE
 #'@param  chlorophyll/flouroscence? Defaults to FALSE
-#'@param ... extended to other plot parameters
 #'@return A graphical plot of hydrography
 #'@author Midhun shah Hussain
 #'@examples plot_BioArgo(float1)# "float1" return from Extract_bioArgo.
 #'@examples plot_Bioargo(float1,temperature=TRUE)
 #'@examples plot_Bioargo(float1,salinity=TRUE)
-#'@export crayon
+#'@import  crayon
+#'@export
 #'
 #'
 #'

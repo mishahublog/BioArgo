@@ -9,7 +9,7 @@
 #'
 #' Extract BioArgo from  raw file in .nc formats.This function is only applicable to BioArgos not for usual Argo floats
 #' 
-#' @param bioarg = A .nc file from the following sources.
+#' @param bioarg A nc file from the following sources.
 #' 
 #' @source The datasets can be download from following repositories
 #' 
@@ -18,6 +18,7 @@
 #' @source \href{http://www.ifremer.fr/co-argoFloats/}{Argo: Single downloads}
 #' 
 #' @author Midhun shah Hussain
+#' @export
 #' 
 #' 
 
