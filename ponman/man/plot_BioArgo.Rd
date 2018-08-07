@@ -5,7 +5,7 @@
 \title{A single profile plotting function}
 \usage{
 plot_BioArgo(x, temperature = FALSE, salinity = FALSE,
-  oxygen = FALSE, chlorophyll = FALSE, ...)
+  oxygen = FALSE, chlorophyll = FALSE, backscatter = FALSE, ...)
 }
 \arguments{
 \item{x}{A single BioArgo file(This argument plots all paramters in a panel)}

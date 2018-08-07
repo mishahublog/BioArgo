@@ -29,44 +29,44 @@ plot_BioArgo<- function(x,temperature=FALSE,salinity=FALSE,
   {
 # make it true, when you want only temperature
    if(temperature==TRUE){
-     plot(x[[6]],-x[[5]],xlab = "", ylab = names(x)[5],xaxt="n",yaxt="n",type = "l",...)
+     plot(x$temperature,-x$pressure,xlab = "", ylab ="",xaxt="n",yaxt="n",type = "l",...)
      axis(3)
-     axis(2,at = seq(min(-x[5]),max(-x[5]),by = 100),labels = rev(round(seq(min(x[5]),max(x[5]),by = 100))))
+     axis(2,at = seq(min(-x$pressure),max(-x$pressure),by = 100),labels = rev(round(seq(min(x$pressure),max(x$pressure),by = 100))))
      mtext(names(x)[6],side = 3,line = 2)
      mtext(names(x)[5],side = 2,line = 3)
      }
   # make it true, when you want only salinity
  else
   if(salinity==TRUE){
-    plot(x[[7]],-x[[5]],xlab = "", ylab = names(x)[5],xaxt="n",yaxt="n",type = "l",...)
+    plot(x$salinity,-x$pressure,xlab = "", ylab ="",xaxt="n",yaxt="n",type = "l",...)
     axis(3)
-    axis(2,at = seq(min(-x[5]),max(-x[5]),by = 100),labels = rev(round(seq(min(x[5]),max(x[5]),by = 100))))
+    axis(2,at = seq(min(-x$pressure),max(-x$pressure),by = 100),labels = rev(round(seq(min(x$pressure),max(x$pressure),by = 100))))
     mtext(names(x)[7],side = 3,line = 2)
     mtext(names(x)[5],side = 2,line = 3)
     }
   # make it true, when you want only oxygen
   else
   if(oxygen==TRUE){
-    plot(x[[8]],-x[[5]],xlab = "", ylab = names(x)[5],xaxt="n",yaxt="n",type = "l",...)
+    plot(x$oxygen,-x$pressure,xlab = "", ylab = "",xaxt="n",yaxt="n",type = "l",...)
     axis(3)
-    axis(2,at = seq(min(-x[5]),max(-x[5]),by = 100),labels = rev(round(seq(min(x[5]),max(x[5]),by = 100))))
+    axis(2,at = seq(min(-x$pressure),max(-x$pressure),by = 100),labels = rev(round(seq(min(x$pressure),max(x$pressure),by = 100))))
     mtext(names(x)[8],side = 3,line = 2)
     mtext(names(x)[5],side = 2,line = 3)
     }
   # make it true, when you want only chlorophyll
   else
   if(chlorophyll==TRUE){
-    plot(x[[9]],-x[[5]],xlab = "", ylab = names(x)[5],xaxt="n",yaxt="n",type = "l",...)
+    plot(x$chlorophyll,-x$pressure,xlab = "", ylab = "",xaxt="n",yaxt="n",type = "l",...)
     axis(3)
-    axis(2,at = seq(min(-x[5]),max(-x[5]),by = 100),labels = rev(round(seq(min(x[5]),max(x[5]),by = 100))))
+    axis(2,at = seq(min(-x$pressure),max(-x$pressure),by = 100),labels = rev(round(seq(min(x$pressure),max(x$pressure),by = 100))))
     mtext(names(x)[9],side = 3,line = 2)
     mtext(names(x)[5],side = 2,line = 3)
   }
   else
     if(backscatter==TRUE){
-      plot(x[[10]],-x[[5]],xlab = "", ylab = names(x)[5],xaxt="n",yaxt="n",type = "l",...)
+      plot(x$backscatter,-x$pressure,xlab = "", ylab ="",xaxt="n",yaxt="n",type = "l",...)
       axis(3)
-      axis(2,at = seq(min(-x[5]),max(-x[5]),by = 100),labels = rev(round(seq(min(x[5]),max(x[5]),by = 100))))
+      axis(2,at = seq(min(-x$pressure),max(-x$pressure),by = 100),labels = rev(round(seq(min(x$pressure),max(x$pressure),by = 100))))
       mtext(names(x)[10],side = 3,line = 2)
       mtext(names(x)[5],side = 2,line = 3)
     }
@@ -77,27 +77,27 @@ plot_BioArgo<- function(x,temperature=FALSE,salinity=FALSE,
     par(mfrow=c(2,2))
     par(mar=c(2,4,4,2))
   #plot all the four plots
-    plot(x[[6]],-x[[5]],xlab = "", ylab = "",xaxt="n",yaxt="n",type = "l",col="red",...)
+    plot(x$temperature,-x$pressure,xlab = "", ylab = "",xaxt="n",yaxt="n",type = "l",col="red",...)
     axis(3)
-    axis(2,at = seq(min(-x[5]),max(-x[5]),by = 100),labels = rev(round(seq(min(x[5]),max(x[5]),by = 100))))
+    axis(2,at = seq(min(-x$pressure),max(-x$pressure),by = 100),labels = rev(round(seq(min(x$pressure),max(x$pressure),by = 100))))
     mtext(names(x)[6],side = 3,line = 2)
     mtext(names(x)[5],side = 2,line = 3)
 
-    plot(x[[7]],-x[[5]],xlab = "", ylab = "",xaxt="n",yaxt="n",type = "l",col="blue",...)
+    plot(x$salinity,-x$pressure,xlab = "", ylab = "",xaxt="n",yaxt="n",type = "l",col="blue",...)
     axis(3)
-    axis(2,at = seq(min(-x[5]),max(-x[5]),by = 100),labels = rev(round(seq(min(x[5]),max(x[5]),by = 100))))
+    axis(2,at = seq(min(-x$pressure),max(-x$pressure),by = 100),labels = rev(round(seq(min(x$pressure),max(x$pressure),by = 100))))
     mtext(names(x)[7],side = 3,line = 2)
     mtext(names(x)[5],side = 2,line = 3)
 
-    plot(x[[8]],-x[[5]],xlab = "", ylab = "",xaxt="n",yaxt="n",type = "l",col="orange",...)
+    plot(x$oxygen,-x$pressure,xlab = "", ylab = "",xaxt="n",yaxt="n",type = "l",col="pink",...)
     axis(3)
-    axis(2,at = seq(min(-x[5]),max(-x[5]),by = 100),labels = rev(round(seq(min(x[5]),max(x[5]),by = 100))))
+    axis(2,at = seq(min(-x$pressure),max(-x$pressure),by = 100),labels = rev(round(seq(min(x$pressure),max(x$pressure),by = 100))))
     mtext(names(x)[8],side = 3,line = 2)
     mtext(names(x)[5],side = 2,line = 3)
 
-    plot(x[[9]],-x[[5]],xlab = "", ylab = "",xaxt="n",yaxt="n",type = "l",col="green",...)
+    plot(x$chlorophyll,-x$pressure,xlab = "", ylab = "",xaxt="n",yaxt="n",type = "l",col="green",...)
     axis(3)
-    axis(2,at = seq(min(-x[5]),max(-x[5]),by = 100),labels = rev(round(seq(min(x[5]),max(x[5]),by = 100))))
+    axis(2,at = seq(min(-x$pressure),max(-x$pressure),by = 100),labels = rev(round(seq(min(x$pressure),max(x$pressure),by = 100))))
     mtext(names(x)[9],side = 3,line = 2)
     mtext(names(x)[5],side = 2,line = 3)
     library(crayon)

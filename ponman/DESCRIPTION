@@ -1,12 +1,11 @@
 Package: ponman
 Type: Package
-Title: What the Package Does (Title Case)
+Title:BioArgo(Argo) Data Analysis  
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: Midhun shah Hussain, Smitha BR.
+Maintainer: Midhun shah Hussain<mishahueco@gmail.com>
+Description:This is a toolbox for data mining,analysis and statistics from BioArgo floats.This package can be used for time series analysis,spatial extensions of oceanographic parameters.Single profile analysis, multiple profile analysis,trimming and filtering of parameters.Mapping of Argo floats,interpolation of spatial values,comparison with remote sensing datasets.
+License: GPL (>= 3)
 Imports: crayon
 Encoding: UTF-8
 LazyData: true
