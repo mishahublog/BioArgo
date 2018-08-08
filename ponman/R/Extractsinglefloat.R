@@ -100,9 +100,7 @@ ExtractBioArgo<- function(bioarg) {
     
     
     
-    
     return(data1)
-    
     
     
     
