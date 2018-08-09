@@ -11,6 +11,14 @@
   \item Oxygen      - "oxygen"
   \item Chlorophyll - "chlorophyll"
   \item Backscatter - "backscatter"
+}
+Parameter "date" formating for months
+\itemize{
+  \item January  -"01"
+  \item February -"02"
+  \item March    -"03"
+  \item . . . ..
+  \item December -"12"
 }}
 \usage{
 Filter_bioArgo(batchlist, parameter, start = NULL, end = NULL,
@@ -21,13 +29,28 @@ Filter_bioArgo(batchlist, parameter, start = NULL, end = NULL,
 
 \item{parameter}{A defined number of variables, the formats are shown below}
 
-\item{start}{A value,in which your range starts}
+\item{start}{A value,in which your range starts, Not valued when parameter is "date"}
 
-\item{end}{A value,in which your range ends}
+\item{end}{A value,in which your range ends,Not valued when parameter is "date"}
+
+\item{month}{A value as "character", when parameter is "date"}
+
+\item{year}{A value as "character", when parameter is "date"}
+
+\item{day}{A value as "character", when parameter is "date"}
 }
 \description{
 This function trims paramters effectively, including latitude, longitude, date and cycle no.Before trims 
 find the range using function  \code{\link{bioArgo_Ranger()}}
+}
+\examples{
+Argo_February<- Filter_bioArgo(test,parameter = "date",month = "02")#select months
+Argo_2013<- Filter_bioArgo(test,parameter = "date",year = "2013")#select years
+depth20.30<- Filter_bioArgo(test,parameter = "pressure",start = 20,end = 30)# Be careful that the values are numeric
+
+
+
+
 }
 \author{
 Midhun shah Hussain
