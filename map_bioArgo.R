@@ -1,4 +1,4 @@
-map_bioArgo<- function(batchlist,satdata,...){
+Sat_bioArgo<- function(batchlist,satdata,...){
 library(raster)
   lat<- range(lapply(1:length(batchlist),function(x)as.numeric(unique(batchlist[[x]]$latitude))))
   lon<- range(lapply(1:length(batchlist),function(x)as.numeric(unique(batchlist[[x]]$longitude))))
