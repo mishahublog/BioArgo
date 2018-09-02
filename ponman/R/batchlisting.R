@@ -20,7 +20,7 @@
 #'profilelist<- batch(profiles)# A list of Argo profiles
 #'
 #'
-batch<- function(){
+batch<- function(filenames){
   
 batchlist<- lapply(filenames,function(x)ExtractBioArgo(x))
 names(batchlist)<- filenames

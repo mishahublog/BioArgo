@@ -4,7 +4,7 @@
 \alias{batch}
 \title{Batch listing of Argo profiles}
 \usage{
-batch()
+batch(filenames)
 }
 \arguments{
 \item{filenames}{list of Argo profiles(.nc) from the working directory}

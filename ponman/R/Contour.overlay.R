@@ -25,6 +25,8 @@
 #'   \item Oxygen      - "oxygen"
 #'   \item Chlorophyll - "chlorophyll"
 #'   \item Backscatter - "backscatter"
+#'   \item Sigma       - "Sigma"
+#'   \item Sigma1000   - "Sigma1000"
 #' }
 #' 
 #' @author Midhun shah Hussain
@@ -34,8 +36,8 @@
 #'Contour.BioArgo(Argolist = myfloatlist,parameter = "chlorophyll")# Single paramters
 #'Contour.BioArgo(Argolist = myfloatlist,parameter = "chlorophyll",nlevels=20)# Add more Arguments of contour functions
 #'
-Contour.BioArgo<- function(Argolist,overview=FALSE,parameter,...)
-#Data formating
+Contour.overlay<- function(Argolist,parameter,...)
+  #Data formating
 {maxfac<- max(as.numeric(lapply(1:length(Argolist),function(x)length(Argolist[[x]]$pressure))))
 listlat<- lapply(1:length(Argolist),function(x)c(Argolist[[x]]$latitude,rep(NA,Mod(length(Argolist[[x]]$latitude)-(maxfac)))))
 listlon<- lapply(1:length(Argolist),function(x)c(Argolist[[x]]$longitude,rep(NA,Mod(length(Argolist[[x]]$longitude)-(maxfac)))))
@@ -44,6 +46,15 @@ listsal<- lapply(1:length(Argolist),function(x)c(Argolist[[x]]$salinity,rep(NA,M
 listoxy<- lapply(1:length(Argolist),function(x)c(Argolist[[x]]$oxygen,rep(NA,Mod(length(Argolist[[x]]$oxygen)-(maxfac)))))
 listchl<- lapply(1:length(Argolist),function(x)c(Argolist[[x]]$chlorophyll,rep(NA,Mod(length(Argolist[[x]]$chlorophyll)-(maxfac)))))
 listbks<- lapply(1:length(Argolist),function(x)c(Argolist[[x]]$backscatter,rep(NA,Mod(length(Argolist[[x]]$backscatter)-(maxfac)))))
+#derived functions
+library(gsw)
+N2<- lapply(1:length(Argolist),function(x)c(gsw_Nsquared(SA = Argolist[[x]]$salinity,
+                                                         CT = Argolist[[x]]$temperature,
+                                                         p = Argolist[[x]]$pressure)))
+
+listN2<- lapply(1:length(N2),function(x)c(N2[[x]]$N2,rep(NA,Mod(length(N2[[x]]$N2)-(maxfac)))))
+
+
 #Metadata formating
 Extracdate<- lapply(1:length(Argolist),function(x)unique(Argolist[[x]]$Date))
 date<- lapply(1:length(Extracdate),function(x)as.Date(Extracdate[[x]],origin="1950-01-01"))
@@ -62,10 +73,12 @@ names(xdata1)<- c("id","date","lon","lat","depth")
 #Derived values
 #========================
 library(gsw)
+#zero pressure
 sigma<- lapply(1:length(Argolist),function(x)gsw_sigma0(SA = Argolist[[x]]$salinity,CT = Argolist[[x]]$temperature))
 listsigma<- lapply(1:length(sigma),function(x)c(sigma[[x]],rep(NA,Mod(length(sigma[[x]])-(maxfac)))))
-
-
+#1000 pressure
+sigma1000<- lapply(1:length(Argolist),function(x)gsw_sigma1(SA = Argolist[[x]]$salinity,CT = Argolist[[x]]$temperature))
+listsigma1000<- lapply(1:length(sigma1000),function(x)c(sigma1000[[x]],rep(NA,Mod(length(sigma1000[[x]])-(maxfac)))))
 #++++++==========================================================================================
 #plott formating
 #=====================================================+++++++++++++++++++++++++++++++++++++++++
@@ -118,7 +131,16 @@ mindepth<- max(as.numeric(lapply(depth, function(x) x[which.min(abs(x))])))
 minbks<- min(as.numeric(lapply(listbks, function(x) x[which.min(abs(x))])))
 maxbks<- max(as.numeric(lapply(listbks, function(x) x[which.max(abs(x))])))
 f <- function(m) t(m)[,nrow(m):1]
-#density
+#N2
+matN2<- as.matrix(as.data.frame(listN2))
+colnames(mattemp)<- NULL
+totaldepthno<- max(as.numeric(lapply(1:length(Argolist),function(x)length(Argolist[[x]]$pressure))))
+depth<- lapply(1:length(Argolist),function(x)c(Argolist[[x]]$pressure,rep(NA,Mod(length(Argolist[[x]]$pressure)-(maxfac)))))
+maxdepth<- max(as.numeric(lapply(depth, function(x) x[which.max(abs(x))])))
+mindepth<- min(as.numeric(lapply(depth, function(x) x[which.min(abs(x))])))
+minN2<- min(as.numeric(lapply(listN2, function(x) x[which.min(abs(x))])))
+maxN2<- max(as.numeric(lapply(listN2, function(x) x[which.max(abs(x))])))
+#sigma
 matsig<- as.matrix(as.data.frame(listsigma))
 colnames(matsig)<- NULL
 totaldepthno<- max(as.numeric(lapply(1:length(Argolist),function(x)length(Argolist[[x]]$pressure))))
@@ -127,175 +149,68 @@ maxdepth<- max(as.numeric(lapply(depth, function(x) x[which.max(abs(x))])))
 mindepth<- min(as.numeric(lapply(depth, function(x) x[which.min(abs(x))])))
 minsig<- min(as.numeric(lapply(listsigma, function(x) x[which.min(abs(x))])))
 maxsig<- max(as.numeric(lapply(listsigma, function(x) x[which.max(abs(x))])))
+#sigma1000
+matsig1<- as.matrix(as.data.frame(listsigma1000))
+colnames(matsig1)<- NULL
+totaldepthno<- max(as.numeric(lapply(1:length(Argolist),function(x)length(Argolist[[x]]$pressure))))
+depth<- lapply(1:length(Argolist),function(x)c(Argolist[[x]]$pressure,rep(NA,Mod(length(Argolist[[x]]$pressure)-(maxfac)))))
+maxdepth<- max(as.numeric(lapply(depth, function(x) x[which.max(abs(x))])))
+mindepth<- min(as.numeric(lapply(depth, function(x) x[which.min(abs(x))])))
+minsig<- min(as.numeric(lapply(listsigma1000, function(x) x[which.min(abs(x))])))
+maxsig<- max(as.numeric(lapply(listsigma1000, function(x) x[which.max(abs(x))])))
 
 
 #layout(matrix(c(1,2,3,4), 2, 2, byrow = TRUE))
-if (overview==TRUE)
-{
-par(mfrow=c(2,2))
-#Temperature
-contour(x = 1:nrow(f(mattemp)),y = 1:ncol(f(mattemp)),
-        z =f(mattemp), xaxt="n",yaxt="n",...)
- axis(side = 1,at = 1:length(Argolist),labels = seq(date[[1]],date[[length(Argolist)]],length.out = length(Argolist)) )
- axis(side = 2,at=seq(1,totaldepthno,length.out =25),rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))
- mtext("Date",side = 1,line=2.5)
- mtext("Depth(m)",side = 2,line = 2.5)
- title(main = "vertical section of Temperature")
- 
-#Salinity
- contour(x = 1:nrow(f(matsal)),y = 1:ncol(f(matsal)),
-         z =f(matsal), xaxt="n",yaxt="n",...)
- axis(side = 1,at = 1:length(Argolist),labels = seq(date[[1]],date[[length(Argolist)]],length.out = length(Argolist)) )
- axis(side = 2,at=seq(1,totaldepthno,length.out =25),rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))
- mtext("Date",side = 1,line=2.5)
- mtext("Depth(m)",side = 2,line = 2.5)
- title(main = "vertical section of Salinity")
- 
- 
- #Oxygen
- contour(x = 1:nrow(f(matoxyl)),y = 1:ncol(f(matoxyl)),
-         z =f(matoxyl), xaxt="n",yaxt="n",...)
- axis(side = 1,at = 1:length(Argolist),labels = seq(date[[1]],date[[length(Argolist)]],length.out = length(Argolist)) )
- axis(side = 2,at=seq(1,totaldepthno,length.out =25),rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))
- mtext("Date",side = 1,line=2.5)
- mtext("Depth(m)",side = 2,line = 2.5)
- title(main = "vertical section of Oxygen")
- 
- #chlorophyll
- contour(x = 1:nrow(f(matchl)),y = 1:ncol(f(matchl)),
-         z =f(matchl), xaxt="n",yaxt="n",...)
- axis(side = 1,at = 1:length(Argolist),labels = seq(date[[1]],date[[length(Argolist)]],length.out = length(Argolist)) )
- axis(side = 2,at=seq(1,totaldepthno,length.out =25),rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))
- mtext("Date",side = 1,line=2.5)
- mtext("Depth(m)",side = 2,line = 2.5)
- title(main = "vertical section of chlorophyll")}
+
 #=================================================================================================================
 # single plots
 #===================================================================================================================
 #Salinity
- else
-   if(parameter=="salinity")
-   {contour(x = 1:nrow(f(matsal)),y = 1:ncol(f(matsal)),
-                   z =f(matsal), xaxt="n",yaxt="n",...)
-axis(side = 1,at = 1:length(Argolist),labels = seq(date[[1]],date[[length(Argolist)]],length.out = length(Argolist)) )
-axis(side = 2,at=seq(1,totaldepthno,length.out =25),rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))
-mtext("Date",side = 1,line=2.5)
-mtext("Depth(m)",side = 2,line = 2.5)
-title(main = "vertical section of Salinity")}
-else
+
   if(parameter=="salinity")
   {contour(x = 1:nrow(f(matsal)),y = 1:ncol(f(matsal)),
-           z =f(matsal), xaxt="n",yaxt="n",...)
-    axis(side = 1,at = 1:length(Argolist),labels = seq(date[[1]],date[[length(Argolist)]],length.out = length(Argolist)) )
-    axis(side = 2,at=seq(1,totaldepthno,length.out =25),rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))
-    mtext("Date",side = 1,line=2.5)
-    mtext("Depth(m)",side = 2,line = 2.5)
-    title(main = "vertical section of Salinity")}
+           z =f(matsal), xaxt="n",yaxt="n",...)}
+
 #=====================================================================================================================
 # temperature
 else
   if(parameter=="temperature")
   {contour(x = 1:nrow(f(mattemp)),y = 1:ncol(f(mattemp)),
-           z =f(mattemp), xaxt="n",yaxt="n",...)
-    axis(side = 1,at = 1:length(Argolist),labels = seq(date[[1]],date[[length(Argolist)]],length.out = length(Argolist)) )
-    axis(side = 2,at=seq(1,totaldepthno,length.out =25),rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))
-    mtext("Date",side = 1,line=2.5)
-    mtext("Depth(m)",side = 2,line = 2.5)
-    title(main = "vertical section of Temperature")}
-else
-  if(parameter=="temperature")
-  {contour(x = 1:nrow(f(mattemp)),y = 1:ncol(f(mattemp)),
-           z =f(mattemp), xaxt="n",yaxt="n",...)
-    axis(side = 1,at = 1:length(Argolist),labels = seq(date[[1]],date[[length(Argolist)]],length.out = length(Argolist)) )
-    axis(side = 2,at=seq(1,totaldepthno,length.out =25),rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))
-    mtext("Date",side = 1,line=2.5)
-    mtext("Depth(m)",side = 2,line = 2.5)
-    title(main = "vertical section of Temperature")}
+           z =f(mattemp), xaxt="n",yaxt="n",...)}
+
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #Oxygen
 else
   if(parameter=="oxygen")
   {contour(x = 1:nrow(f(matoxyl)),y = 1:ncol(f(matoxyl)),
-           z =f(matoxyl), xaxt="n",yaxt="n",...)
-    axis(side = 1,at = 1:length(Argolist),labels = seq(date[[1]],date[[length(Argolist)]],length.out = length(Argolist)) )
-    axis(side = 2,at=seq(1,totaldepthno,length.out =25),rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))
-    mtext("Date",side = 1,line=2.5)
-    mtext("Depth(m)",side = 2,line = 2.5)
-    title(main = "vertical section of Oxygen")}
-else
-  if(parameter=="oxygen")
-  {contour(x = 1:nrow(f(matoxyl)),y = 1:ncol(f(matoxyl)),
-           z =f(matoxyl), xaxt="n",yaxt="n",...)
-    axis(side = 1,at = 1:length(Argolist),labels = seq(date[[1]],date[[length(Argolist)]],length.out = length(Argolist)) )
-    axis(side = 2,at=seq(1,totaldepthno,length.out =25),rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))
-    mtext("Date",side = 1,line=2.5)
-    mtext("Depth(m)",side = 2,line = 2.5)
-    title(main = "vertical section of Oxygen")}
+           z =f(matoxyl), xaxt="n",yaxt="n",...)}
+
 #++++++++++++==================++++++=====+++++====+++===========+++=======++++=======
 #chlorophyll
 else
   if(parameter=="chlorophyll")
   {contour(x = 1:nrow(f(matchl)),y = 1:ncol(f(matchl)),
-           z =f(matchl), xaxt="n",yaxt="n",...)
-    axis(side = 1,at = 1:length(Argolist),labels = seq(date[[1]],date[[length(Argolist)]],length.out = length(Argolist)) )
-    axis(side = 2,at=seq(1,totaldepthno,length.out =25),rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))
-    mtext("Date",side = 1,line=2.5)
-    mtext("Depth(m)",side = 2,line = 2.5)
-    title(main = "vertical section of Chlorophyll")}
-else
-  if(parameter=="chlorophyll")
-  {contour(x = 1:nrow(f(matchl)),y = 1:ncol(f(matchl)),
-           z =f(matchl), xaxt="n",yaxt="n",...)
-    axis(side = 1,at = 1:length(Argolist),labels = seq(date[[1]],date[[length(Argolist)]],length.out = length(Argolist)) )
-    axis(side = 2,at=seq(1,totaldepthno,length.out =25),rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))
-    mtext("Date",side = 1,line=2.5)
-    mtext("Depth(m)",side = 2,line = 2.5)
-    title(main = "vertical section of Chlorophyll")}
+           z =f(matchl), xaxt="n",yaxt="n",...)}
 
+#backscattr
 else
   if(parameter=="backscatter")
   { contour(x = 1:nrow(f(matbks)),y = 1:ncol(f(matbks)),
-           z =f(matbks), xaxt="n",yaxt="n",...)
-    axis(side = 1,at = 1:length(Argolist),labels = seq(date[[1]],date[[length(Argolist)]],length.out = length(Argolist)) )
-    axis(side = 2,at=seq(1,totaldepthno,length.out =25),rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))
-    mtext("Date",side = 1,line=2.5)
-    mtext("Depth(m)",side = 2,line = 2.5)
-    title(main = "vertical section of backscatter")}
+            z =f(matbks), xaxt="n",yaxt="n",...)}
+#N2
 else
-  if (parameter=="sigma"){contour(x = 1:nrow(f(matsig)),y = 1:ncol(f(matsig)),
-                                  z =f(matsig), xaxt="n",yaxt="n",...)
-    axis(side = 1,at = 1:length(Argolist),labels = seq(date[[1]],date[[length(Argolist)]],length.out = length(Argolist)) )
-    axis(side = 2,at=seq(1,totaldepthno,length.out =25),rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))
-    mtext("Date",side = 1,line=2.5)
-    mtext("Depth(m)",side = 2,line = 2.5)
-    title(main = "vertical section of Density")}
-  
+  if(parameter=="N2")
+  { contour(x = 1:nrow(f(matN2)),y = 1:ncol(f(matN2)),
+            z =f(matN2), xaxt="n",yaxt="n",...)}
+#sigma
+else
+  if(parameter=="sigma")
+  {contour(x = 1:nrow(f(matsig)),y = 1:ncol(f(matsig)),
+           z =f(matsig), xaxt="n",yaxt="n",...)}
+#sigma1000
+else
+  if(parameter=="sigma1000")
+  {contour(x = 1:nrow(f(matsig1)),y = 1:ncol(f(matsig1)),
+           z =f(matsig1), xaxt="n",yaxt="n",...)}
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

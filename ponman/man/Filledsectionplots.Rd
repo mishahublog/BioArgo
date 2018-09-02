@@ -3,17 +3,28 @@
 \name{Filledsectionplots}
 \alias{Filledsectionplots}
 \title{Section with filled contours and Overlays}
-\format{The Argument "parameter" and "overlay" character strings can be simply written as small letters could easily work
+\format{The Argument "parameter" strings can be simply written as small letters could easily work.
 
 \itemize{
   \item Temperature - "temperature"
   \item Salinity    - "salinity"
   \item Oxygen      - "oxygen"
   \item Chlorophyll - "chlorophyll"
+}
+
+The Argument "overlay" strings can be simply written as small letters could easily work.
+\itemize{
+  \item Temperature - "temperature"
+  \item Salinity    - "salinity"
+  \item Oxygen      - "oxygen"
+  \item Chlorophyll - "chlorophyll"
   \item Backscatter - "backscatter"
+  \item sigma       - "sigma"
+  \item sigma1000   - "sigma1000"
 }}
 \usage{
-Filledsectionplots(Argolist, parameter, col.val, overlay = TRUE, ...)
+Filledsectionplots(Argolist, parameter, col.val, overlay = TRUE,
+  mld = FALSE, ...)
 }
 \arguments{
 \item{Argolist}{is a list BioArgo extracted as a output from extractbioArgo function}
@@ -36,15 +47,6 @@ Filledsectionplots(test,parameter = "chlorophyll",col.val = matlab.like(20))#wit
 Filledsectionplots(test,parameter = "chlorophyll",col.val = matlab.like(20),overlay = "temperature")#with overlay
 title(main = "chlorophyll")#Adding a title
 legend("bottom",legend = "temperature",lwd = 1)#Adding Legend
-
-
-
-
-
-
-
-
-
 
 
 }

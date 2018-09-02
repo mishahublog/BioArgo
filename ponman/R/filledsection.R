@@ -15,19 +15,34 @@
 #'@param col.val amount of colours used in the palette, Here we used matlab.like from library(colorRamps)
 #'@param overlay Another parameter to compare
 #'@param ...  All other arguments of filled.contour \code{\link[graphics]{filled.contour}}
+#'@export
 #'@format 
 #'
-#'The Argument "parameter" and "overlay" character strings can be simply written as small letters could easily work
+#'The Argument "parameter" strings can be simply written as small letters could easily work.
 #'
 #' \itemize{
 #'   \item Temperature - "temperature"
 #'   \item Salinity    - "salinity"
 #'   \item Oxygen      - "oxygen"
 #'   \item Chlorophyll - "chlorophyll"
-#'   \item Backscatter - "backscatter"
 #' }
+#' 
+#' The Argument "overlay" strings can be simply written as small letters could easily work.
+#' \itemize{
+#'   \item Temperature - "temperature"
+#'   \item Salinity    - "salinity"
+#'   \item Oxygen      - "oxygen"
+#'   \item Chlorophyll - "chlorophyll"
+#'   \item Backscatter - "backscatter"
+#'   \item sigma       - "sigma"
+#'   \item sigma1000   - "sigma1000"
+#' }
+#' 
+#' 
+#' 
 #'@author 
 #'Midhun shah Hussain
+#'
 #'
 #'@examples 
 #'
