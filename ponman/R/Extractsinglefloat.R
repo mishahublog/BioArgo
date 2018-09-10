@@ -45,6 +45,9 @@ ExtractBioArgo<- function(bioarg) {
     ux[which.max(tabulate(match(x, ux)))]
   }
   
+  pres<- argo$PRES[,5]
+  
+  
   bsct<- argo$BBP700[,5]
   
   
@@ -66,11 +69,12 @@ ExtractBioArgo<- function(bioarg) {
     assign(paste("Bioargo",unique(argo$CYCLE_NUMBER),unique(argo$PLATFORM_NUMBER),sep = "-"),
            data.frame(Date=date[1:trimfac],latitude=lat[1:trimfac],longitude=lon[1:trimfac],cycle.no=cycle.no[1:trimfac],pressure=pres[1:trimfac],
                       temperature=temp[1:trimfac],
-                      oxygen=oxy[1:trimfac],chlorophyll=chl[1:trimfac],backscatter= bsct[1:trimfac]),envir = .GlobalEnv)   
+                      oxygen=oxy[1:trimfac],chlorophyll=chl[1:trimfac],backscatter= bsct[1:trimfac]),envir = .GlobalEnv)
     
-    data0<- data.frame(Date=date[1:trimfac],latitude=lat[1:trimfac],longitude=lon[1:trimfac],cycle.no=cycle.no[1:trimfac],pressure=pres[1:trimfac],
-                       temperature=temp[1:trimfac],oxygen=oxy[1:trimfac],chlorophyll=chl[1:trimfac],backscatter= bsct[1:trimfac])
-    return(data0)
+    data1<- data.frame(Date=date[1:trimfac],latitude=lat[1:trimfac],longitude=lon[1:trimfac],cycle.no=cycle.no[1:trimfac],pressure=pres[1:trimfac],
+                       temperature=temp[1:trimfac],
+                       oxygen=oxy[1:trimfac],chlorophyll=chl[1:trimfac],backscatter= bsct[1:trimfac])
+    return(data1)
     
     
   }

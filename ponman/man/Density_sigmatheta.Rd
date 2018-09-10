@@ -2,7 +2,7 @@
 % Please edit documentation in R/Density_sigma.R
 \name{Density_sigmatheta}
 \alias{Density_sigmatheta}
-\title{Density section graph and density calculations(sigma\theta)}
+\title{Density section graph and density calculations(sigma)}
 \usage{
 Density_sigmatheta(Argolist, plot_contour = FALSE, pressure.effect = 0,
   ...)
@@ -21,16 +21,8 @@ Calculation of density and plotting in section plots.The resources used for this
 }
 \details{
 This function extracts values from each profiles to a section contours. A standalone function doesn't support filledsection contours and overlays
-}
-\examples{
+
+
 
 densityat4000<- Density_sigmatheta(test,plot_contour = TRUE,pressure.effect = 4000)
-
-
-
-
-
-
-
-
 }

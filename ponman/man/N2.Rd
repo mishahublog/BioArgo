@@ -18,6 +18,7 @@ Calculation of BVfrequency and plotting in section plots.The resources used for 
 }
 \examples{
 
+
 N2(Argolist = test,plot_contour = TRUE)
 
 

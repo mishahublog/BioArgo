@@ -15,11 +15,12 @@
 #'@param  chlorophyll/flouroscence? Defaults to FALSE
 #'@return A graphical plot of hydrography
 #'@author Midhun shah Hussain
+#'@export
 #'@examples plot_BioArgo(float1)# "float1" return from Extract_bioArgo.
 #'@examples plot_Bioargo(float1,temperature=TRUE)
 #'@examples plot_Bioargo(float1,salinity=TRUE)
 #'@import  crayon
-#'@export
+#'
 #'
 #'
 #'

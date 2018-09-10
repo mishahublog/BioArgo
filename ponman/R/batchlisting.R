@@ -12,12 +12,13 @@
 #'
 #'
 #'@author Midhun shah Hussain
-#'
+#'@export
 #'@examples
 #'
 #'profiles<- list.files()# set working directory where Argo profiles stored
 #'
 #'profilelist<- batch(profiles)# A list of Argo profiles
+#'
 #'
 #'
 batch<- function(filenames){

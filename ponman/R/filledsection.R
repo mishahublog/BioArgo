@@ -52,7 +52,7 @@
 #' legend("bottom",legend = "temperature",lwd = 1)#Adding Legend
 #'
 #'
-Filledsectionplots<- function(Argolist,parameter,col.val,overlay=TRUE,mld=FALSE,...)
+Filledsectionplots<- function(Argolist,parameter,col.val,overlay=TRUE,mld=FALSE,print.mld=FALSE,...)
   #Argolist is a list BioArgo extracted as a output from extractbioArgo function
   #Parameter defines the parameters such as temp, sal,etc
   #col.val amount of colours used in the palette, Here we used matlab.like from colourramp
@@ -95,13 +95,18 @@ find_mld<- function(Argoprofile){
   sigma<- gsw_sigma0(SA = Argoprofile$salinity,CT = Argoprofile$temperature)
   dat<- data.frame(sigma,pressure=Argoprofile$pressure)
   pres<- rownames(subset(dat,dat$pressure>=9 & Argoprofile$pressure<=10))[1]
-  sig03<- sigma[as.numeric(pres)]+0.03
+  sig03<- sigma[as.numeric(pres)]+0.02
   mld<- subset(dat,dat$sigma>=sig03 )[2,2]
   return(mld)
 }
 
 mldlist<- lapply(1:length(test),function(x)find_mld(test[[x]]))
 datmld<- data.frame(x=1:length(Argolist),mld=as.numeric(mldlist))
+
+if(print.mld==TRUE){
+  mld<- data.frame(profile.no=1:length(Argolist),mld=as.numeric(mldlist))
+  return(mld)
+}
 
 #=================================================
 source("Contour.overlay.R")
@@ -227,8 +232,9 @@ if(parameter=="chlorophyll" ){
 ##MLD===================================
 if (mld ==TRUE){
   
-  if(length(depth[[1]])>29){stop("trim up to 100")}
+  if(length(depth[[1]])>29){stop("check mld using print.mld and trim upto max(mld)")}
    
+ 
   
   {if(parameter=="temperature" ){
   mattemp<- as.matrix(as.data.frame(listtemp))

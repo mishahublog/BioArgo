@@ -18,8 +18,9 @@
 #'@param plot_contour A logical value whether you plot in contour, default is FALSE 
 #'@param ... All other arguments for contour plots
 #'
-#'
+#'@export
 #'@examples 
+#'
 #'
 #'N2(Argolist = test,plot_contour = TRUE)
 #'

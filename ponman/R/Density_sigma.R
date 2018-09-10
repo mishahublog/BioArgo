@@ -1,6 +1,6 @@
 #'
 #'
-#'Density section graph and density calculations(sigma\theta)
+#'Density section graph and density calculations(sigma)
 #'
 #'
 #'@description 
@@ -15,12 +15,12 @@
 #'@param pressure.effect pressure influence on density(Trim profiles according to depths)
 #'@param ... All other arguments for contour plots
 #'
-#'
+#'@export
 #'@details 
 #'
 #'This function extracts values from each profiles to a section contours. A standalone function doesn't support filledsection contours and overlays
 #'
-#'@examples 
+#'
 #'
 #' densityat4000<- Density_sigmatheta(test,plot_contour = TRUE,pressure.effect = 4000)
 #'
@@ -38,7 +38,7 @@ Density_sigmatheta<- function(Argolist,plot_contour=FALSE,pressure.effect=0,...)
 library(gsw)
 if(pressure.effect==0){
 maxfac<- max(as.numeric(lapply(1:length(Argolist),function(x)length(Argolist[[x]]$pressure))))
-#Find N2 squred
+#Find sig squred
 sigma<- lapply(1:length(Argolist),function(x)gsw_sigma0(SA = Argolist[[x]]$salinity,CT = Argolist[[x]]$temperature))
 #Make lists of equal length
 listsigma<- lapply(1:length(sigma),function(x)c(sigma[[x]],rep(NA,Mod(length(sigma[[x]])-(maxfac)))))
@@ -62,15 +62,15 @@ xdata1<- data.frame(lapply(xlist,function(x)ldply(x)))
 names(xdata1)<- c("id","date","lon","lat","depth")
 
 #========================================================================================================
-#N2 squred in matrix for contouring 
+#sig squred in matrix for contouring 
 matsig<- as.matrix(as.data.frame(listsigma))
-colnames(mattemp)<- NULL
+colnames(matsig)<- NULL
 totaldepthno<- max(as.numeric(lapply(1:length(Argolist),function(x)length(Argolist[[x]]$pressure))))
 depth<- lapply(1:length(Argolist),function(x)c(Argolist[[x]]$pressure,rep(NA,Mod(length(Argolist[[x]]$pressure)-(maxfac)))))
 maxdepth<- max(as.numeric(lapply(depth, function(x) x[which.max(abs(x))])))
 mindepth<- min(as.numeric(lapply(depth, function(x) x[which.min(abs(x))])))
-minN2<- min(as.numeric(lapply(listN2, function(x) x[which.min(abs(x))])))
-maxN2<- max(as.numeric(lapply(listN2, function(x) x[which.max(abs(x))])))
+minsig<- min(as.numeric(lapply(listsig, function(x) x[which.min(abs(x))])))
+maxsig<- max(as.numeric(lapply(listsig, function(x) x[which.max(abs(x))])))
 
 
 if (plot_contour==TRUE)
@@ -81,19 +81,19 @@ if (plot_contour==TRUE)
   mtext("Date",side = 1,line=2.5)
   mtext("Depth(m)",side = 2,line = 2.5)
   title(main = "vertical section of Density")
-  return(listN2) 
+  return(listsig) 
 }
 
 else
   
   if(plot_contour==FALSE)
     
-  {return(listN2)}}
+  {return(listsig)}}
 
 ##1000=========================
   if(pressure.effect==1000){
     maxfac<- max(as.numeric(lapply(1:length(Argolist),function(x)length(Argolist[[x]]$pressure))))
-    #Find N2 squred
+    #Find sig squred
     sigma<- lapply(1:length(Argolist),function(x)gsw_sigma1(SA = Argolist[[x]]$salinity,CT = Argolist[[x]]$temperature))
     #Make lists of equal length
     listsigma<- lapply(1:length(sigma),function(x)c(sigma[[x]],rep(NA,Mod(length(sigma[[x]])-(maxfac)))))
@@ -117,15 +117,15 @@ else
     names(xdata1)<- c("id","date","lon","lat","depth")
     
     #========================================================================================================
-    #N2 squred in matrix for contouring 
+    #sig squred in matrix for contouring 
     matsig<- as.matrix(as.data.frame(listsigma))
-    colnames(mattemp)<- NULL
+    colnames(matsig)<- NULL
     totaldepthno<- max(as.numeric(lapply(1:length(Argolist),function(x)length(Argolist[[x]]$pressure))))
     depth<- lapply(1:length(Argolist),function(x)c(Argolist[[x]]$pressure,rep(NA,Mod(length(Argolist[[x]]$pressure)-(maxfac)))))
     maxdepth<- max(as.numeric(lapply(depth, function(x) x[which.max(abs(x))])))
     mindepth<- min(as.numeric(lapply(depth, function(x) x[which.min(abs(x))])))
-    minN2<- min(as.numeric(lapply(listN2, function(x) x[which.min(abs(x))])))
-    maxN2<- max(as.numeric(lapply(listN2, function(x) x[which.max(abs(x))])))
+    minsig<- min(as.numeric(lapply(listsig, function(x) x[which.min(abs(x))])))
+    maxsig<- max(as.numeric(lapply(listsig, function(x) x[which.max(abs(x))])))
     
     
     if (plot_contour==TRUE)
@@ -136,18 +136,18 @@ else
       mtext("Date",side = 1,line=2.5)
       mtext("Depth(m)",side = 2,line = 2.5)
       title(main = "vertical section of Density")
-      return(listN2) 
+      return(listsig) 
     }
     
     else
       
       if(plot_contour==FALSE)
         
-      {return(listN2)}}
+      {return(listsig)}}
 ###2000============================
   if(pressure.effect==2000){
     maxfac<- max(as.numeric(lapply(1:length(Argolist),function(x)length(Argolist[[x]]$pressure))))
-    #Find N2 squred
+    #Find sig squred
     sigma<- lapply(1:length(Argolist),function(x)gsw_sigma2(SA = Argolist[[x]]$salinity,CT = Argolist[[x]]$temperature))
     #Make lists of equal length
     listsigma<- lapply(1:length(sigma),function(x)c(sigma[[x]],rep(NA,Mod(length(sigma[[x]])-(maxfac)))))
@@ -171,15 +171,15 @@ else
     names(xdata1)<- c("id","date","lon","lat","depth")
     
     #========================================================================================================
-    #N2 squred in matrix for contouring 
+    #sig squred in matrix for contouring 
     matsig<- as.matrix(as.data.frame(listsigma))
-    colnames(mattemp)<- NULL
+    colnames(matsig)<- NULL
     totaldepthno<- max(as.numeric(lapply(1:length(Argolist),function(x)length(Argolist[[x]]$pressure))))
     depth<- lapply(1:length(Argolist),function(x)c(Argolist[[x]]$pressure,rep(NA,Mod(length(Argolist[[x]]$pressure)-(maxfac)))))
     maxdepth<- max(as.numeric(lapply(depth, function(x) x[which.max(abs(x))])))
     mindepth<- min(as.numeric(lapply(depth, function(x) x[which.min(abs(x))])))
-    minN2<- min(as.numeric(lapply(listN2, function(x) x[which.min(abs(x))])))
-    maxN2<- max(as.numeric(lapply(listN2, function(x) x[which.max(abs(x))])))
+    minsig<- min(as.numeric(lapply(listsig, function(x) x[which.min(abs(x))])))
+    maxsig<- max(as.numeric(lapply(listsig, function(x) x[which.max(abs(x))])))
     
     
     if (plot_contour==TRUE)
@@ -190,19 +190,19 @@ else
       mtext("Date",side = 1,line=2.5)
       mtext("Depth(m)",side = 2,line = 2.5)
       title(main = "vertical section of Density")
-      return(listN2) 
+      return(listsig) 
     }
     
     else
       
       if(plot_contour==FALSE)
         
-      {return(listN2)}}
+      {return(listsig)}}
 
 ###3000====================
   if(pressure.effect==3000){
     maxfac<- max(as.numeric(lapply(1:length(Argolist),function(x)length(Argolist[[x]]$pressure))))
-    #Find N2 squred
+    #Find sig squred
     sigma<- lapply(1:length(Argolist),function(x)gsw_sigma3(SA = Argolist[[x]]$salinity,CT = Argolist[[x]]$temperature))
     #Make lists of equal length
     listsigma<- lapply(1:length(sigma),function(x)c(sigma[[x]],rep(NA,Mod(length(sigma[[x]])-(maxfac)))))
@@ -226,15 +226,15 @@ else
     names(xdata1)<- c("id","date","lon","lat","depth")
     
     #========================================================================================================
-    #N2 squred in matrix for contouring 
+    #sig squred in matrix for contouring 
     matsig<- as.matrix(as.data.frame(listsigma))
-    colnames(mattemp)<- NULL
+    colnames(matsig)<- NULL
     totaldepthno<- max(as.numeric(lapply(1:length(Argolist),function(x)length(Argolist[[x]]$pressure))))
     depth<- lapply(1:length(Argolist),function(x)c(Argolist[[x]]$pressure,rep(NA,Mod(length(Argolist[[x]]$pressure)-(maxfac)))))
     maxdepth<- max(as.numeric(lapply(depth, function(x) x[which.max(abs(x))])))
     mindepth<- min(as.numeric(lapply(depth, function(x) x[which.min(abs(x))])))
-    minN2<- min(as.numeric(lapply(listN2, function(x) x[which.min(abs(x))])))
-    maxN2<- max(as.numeric(lapply(listN2, function(x) x[which.max(abs(x))])))
+    minsig<- min(as.numeric(lapply(listsig, function(x) x[which.min(abs(x))])))
+    maxsig<- max(as.numeric(lapply(listsig, function(x) x[which.max(abs(x))])))
     
     
     if (plot_contour==TRUE)
@@ -245,19 +245,19 @@ else
       mtext("Date",side = 1,line=2.5)
       mtext("Depth(m)",side = 2,line = 2.5)
       title(main = "vertical section of Density")
-      return(listN2) 
+      return(listsig) 
     }
     
     else
       
       if(plot_contour==FALSE)
         
-      {return(listN2)}}
+      {return(listsig)}}
   
 ###4000===========================
   if(pressure.effect==4000){
     maxfac<- max(as.numeric(lapply(1:length(Argolist),function(x)length(Argolist[[x]]$pressure))))
-    #Find N2 squred
+    #Find sig squred
     sigma<- lapply(1:length(Argolist),function(x)gsw_sigma4(SA = Argolist[[x]]$salinity,CT = Argolist[[x]]$temperature))
     #Make lists of equal length
     listsigma<- lapply(1:length(sigma),function(x)c(sigma[[x]],rep(NA,Mod(length(sigma[[x]])-(maxfac)))))
@@ -281,15 +281,15 @@ else
     names(xdata1)<- c("id","date","lon","lat","depth")
     
     #========================================================================================================
-    #N2 squred in matrix for contouring 
+    #sig squred in matrix for contouring 
     matsig<- as.matrix(as.data.frame(listsigma))
-    colnames(mattemp)<- NULL
+    colnames(matsig)<- NULL
     totaldepthno<- max(as.numeric(lapply(1:length(Argolist),function(x)length(Argolist[[x]]$pressure))))
     depth<- lapply(1:length(Argolist),function(x)c(Argolist[[x]]$pressure,rep(NA,Mod(length(Argolist[[x]]$pressure)-(maxfac)))))
     maxdepth<- max(as.numeric(lapply(depth, function(x) x[which.max(abs(x))])))
     mindepth<- min(as.numeric(lapply(depth, function(x) x[which.min(abs(x))])))
-    minN2<- min(as.numeric(lapply(listN2, function(x) x[which.min(abs(x))])))
-    maxN2<- max(as.numeric(lapply(listN2, function(x) x[which.max(abs(x))])))
+    minsig<- min(as.numeric(lapply(listsig, function(x) x[which.min(abs(x))])))
+    maxsig<- max(as.numeric(lapply(listsig, function(x) x[which.max(abs(x))])))
     
     
     if (plot_contour==TRUE)
@@ -300,14 +300,14 @@ else
       mtext("Date",side = 1,line=2.5)
       mtext("Depth(m)",side = 2,line = 2.5)
       title(main = "vertical section of Density")
-      return(listN2) 
+      return(listsig) 
     }
     
     else
       
       if(plot_contour==FALSE)
         
-      {return(listN2)}}
+      {return(listsig)}}
 }
 
 

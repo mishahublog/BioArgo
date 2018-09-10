@@ -30,7 +30,7 @@
 #' }
 #' 
 #' @author Midhun shah Hussain
-#' 
+#' @export
 #' @examples 
 #'Contour.BioArgo(Argolist= myfloatlist,overview = TRUE)# when you want a overview
 #'Contour.BioArgo(Argolist = myfloatlist,parameter = "chlorophyll")# Single paramters
