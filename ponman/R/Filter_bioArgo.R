@@ -1,10 +1,10 @@
 #======================================
 #BioArgo tool Box
 #=======================================
-#' Filter paramters in BioArgo
-#' 
-#' 
-#'This function trims paramters effectively, including latitude, longitude, date and cycle no.Before trims 
+#' Filter paramters in BioArgo f
+#'
+#'
+#'This function trims paramters effectively, including latitude, longitude, date and cycle no.Before trims
 #'find the range using function  \code{\link{bioArgo_Ranger()}}
 #'
 #'@param batchlist A list of Argo profiles return from  \code{\link{batch()}}
@@ -14,8 +14,8 @@
 #'@param month     A value as "character", when parameter is "date"
 #'@param day       A value as "character", when parameter is "date"
 #'@param year      A value as "character", when parameter is "date"
-#' 
-#'@format 
+#'
+#'@format
 #'
 #'The Argument "parameter" character strings can be simply written as small letters could easily work
 #'
@@ -34,16 +34,16 @@
 #'   \item . . . ..
 #'   \item December -"12"
 #' }
-#' 
+#'
 #'@author Midhun shah Hussain
-#' 
+#'
 #'@examples Argo_February<- Filter_bioArgo(test,parameter = "date",month = "02")#select months
 #'@examples Argo_2013<- Filter_bioArgo(test,parameter = "date",year = "2013")#select years
 #'@examples depth20.30<- Filter_bioArgo(test,parameter = "pressure",start = 20,end = 30)# Be careful that the values are numeric
 #'
 #'
-#' 
-#' 
+#'
+#'
 Filter_bioArgo<- function(batchlist,parameter,start=NULL,end=NULL,month=NULL, year=NULL,day=NULL){
   if (parameter=="date" && !is.null(month))
   {
@@ -52,7 +52,7 @@ Filter_bioArgo<- function(batchlist,parameter,start=NULL,end=NULL,month=NULL, ye
   names(sub)<- names(batchlist)
   ft<- Filter(function(x) nrow(x)>0, sub)
   return(ft)  }
-  
+
   if (parameter=="date" && !is.null(day))
   {
     library(plyr)
@@ -67,14 +67,14 @@ Filter_bioArgo<- function(batchlist,parameter,start=NULL,end=NULL,month=NULL, ye
     names(sub)<- names(batchlist)
     ft<- Filter(function(x) nrow(x)>0, sub)
     return(ft)  }
-  
-  else  
-  
- 
+
+  else
+
+
   {sub<-lapply(1:length(batchlist),function(x) subset(batchlist[[x]],
                         batchlist[[x]][parameter]>=start & batchlist[[x]][parameter]<=end))
   names(sub)<- names(batchlist)
   ft<- Filter(function(x) nrow(x)>0, sub)
-  return(ft)}  
- 
+  return(ft)}
+
 }
