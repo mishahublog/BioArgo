@@ -11,16 +11,14 @@ library(curl)
   urldata<- getURI(url,dirlistonly=TRUE)
   urllist<- unlist(strsplit(urldata,split = "\n"))
   print(urllist)
-  quest<-  readline(prompt = "Do you want download all these files?")
-  if(quest=="yes"| quest=="y"){
-    (for (n in urllist) {download.file(paste(url,n,sep=""),destfile = n)
-      
-      })} 
-  if(quest=="No"| quest=="n") {quest2<- 
-    readline(prompt = "then how many files you want to download?")
-  for (quest2 in urllist) {download.file(paste(url,quest2,sep=""),destfile = quest2)
-    
-  }
+  #quest<-  readline(prompt = "Do you want download all these files?")
+ quest<-  menu(c("Yes", "No"), title= "Do you want download all these files?")
+  if(quest==1){
+    (for (n in urllist) {download.file(paste(url,n,sep=""),destfile = n)}  )} 
+  if(quest== 2) {
+    quest2<- readline(prompt = "Type the file name you want to download:  ")
+       download.file(paste(url,quest2,sep=""),destfile = quest2)
+  
   }
 }
 

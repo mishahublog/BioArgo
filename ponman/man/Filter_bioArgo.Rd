@@ -2,7 +2,7 @@
 % Please edit documentation in R/Filter_bioArgo.R
 \name{Filter_bioArgo}
 \alias{Filter_bioArgo}
-\title{Filter paramters in BioArgo}
+\title{Filter paramters in BioArgo f}
 \format{The Argument "parameter" character strings can be simply written as small letters could easily work
 
 \itemize{
@@ -40,7 +40,7 @@ Filter_bioArgo(batchlist, parameter, start = NULL, end = NULL,
 \item{day}{A value as "character", when parameter is "date"}
 }
 \description{
-This function trims paramters effectively, including latitude, longitude, date and cycle no.Before trims 
+This function trims paramters effectively, including latitude, longitude, date and cycle no.Before trims
 find the range using function  \code{\link{bioArgo_Ranger()}}
 }
 \examples{

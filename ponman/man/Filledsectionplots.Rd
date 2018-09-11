@@ -24,7 +24,7 @@ The Argument "overlay" strings can be simply written as small letters could easi
 }}
 \usage{
 Filledsectionplots(Argolist, parameter, col.val, overlay = TRUE,
-  mld = FALSE, ...)
+  mld = FALSE, print.mld = FALSE, ...)
 }
 \arguments{
 \item{Argolist}{is a list BioArgo extracted as a output from extractbioArgo function}
