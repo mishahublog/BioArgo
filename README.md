@@ -1,8 +1,8 @@
-## Welcome to GitHub Pages
+## Ponman : A package for BioArgo data Analysis
 
-You can use the [editor on GitHub](https://github.com/mishahublog/BioArgo/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+BIO ARGO(from ifremer) : Chlorophyll,Oxygen,Salinity, and temperature measurements on profiling floats.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+The main mission of Bio-Argo is to contribute to the development of a bio-optical and biogeochemical component within the Argo-France program. Profiling floats equipped with bio-optical sensors will be developed for measurement, together with temperature and salinity (Argo), of chlorophyll-a and backscattering (Bio-Argo). These biogeochemical and bio-optical quantities will also serve to compare and validate remotely sensed oceanographic data from satellites. Hosting internationally accredited facilities for pigment analyses as well as bringing in its specific expertise on marine robotics and sensor calibration, the team in Villefranche is strongly involved in such efforts and managing the Bio-Argo project.
 
 ### Markdown
 
