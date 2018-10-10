@@ -14,7 +14,30 @@ get_data2ponman(mode, location = NULL, year = NULL, month = NULL,
   \item base    - "Access data using database and platform informations"
   \item geotime - "Access data by location, year and month"}}
 
-\item{location}{}
+\item{location}{Three locations are currently in operation
+
+\itemize{
+  \item Indian Ocean: "indian_ocean"
+  \item Atlantic Ocean: "atlantic_ocean"
+  \item Pacific Ocean: "pacific_ocean"}}
+
+\item{year}{datasets are found to be available from 1997 to 2018.}
+
+\item{month}{Months are availble on the regular format of "01" as January and "12" as December}
+
+\item{database}{The database options 
+\itemize{
+  \item "aoml"
+  \item   "bodc"        
+\item    "coriolis"
+\item      "csio"
+\item      "csiro"        
+\item      "incois"        
+\item      "jma"        
+\item      "kma"        
+\item      "kordi"    
+\item      "meds"    
+\item      "nmdis"    }}
 
 \item{platform}{}
 }

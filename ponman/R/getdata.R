@@ -1,4 +1,6 @@
 
+#'
+#'
 #'Get data from FTP servers of ifremier to your PC
 #'
 #'
@@ -14,13 +16,30 @@
 #'   \item base    - "Access data using database and platform informations"
 #'   \item geotime - "Access data by location, year and month"} 
 #'
-#'@param location 
-#'@param year
-#'@param month
-#'@param database
-#'@param platform
+#'@param location Three locations are currently in operation
 #'
-#'
+#'\itemize{
+#'   \item Indian Ocean: "indian_ocean"
+#'   \item Atlantic Ocean: "atlantic_ocean"
+#'   \item Pacific Ocean: "pacific_ocean"}
+#'    
+#'@param year datasets are found to be available from 1997 to 2018.
+#'@param month Months are availble on the regular format of "01" as January and "12" as December
+#'@param database The database options 
+#'\itemize{
+#'  \item "aoml"
+#'  \item "bodc"		
+#'  \item "coriolis"
+#'  \item "csio"
+#'  \item "csiro"		
+#'  \item "incois"		
+#'  \item "jma"		
+#'  \item "kma"		
+#'  \item "kordi"	
+#'  \item "meds"	
+#'  \item "nmdis"	}
+#' 
+#'@param platform 
 #'
 #'
 #'
