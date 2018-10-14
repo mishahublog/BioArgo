@@ -39,13 +39,10 @@
 #'  \item "meds"	
 #'  \item "nmdis"	}
 #' 
-#'@param platform 
-#'
-#'
-#'
-#'
-#'
-#'
+#'@param platform which is a number(eg:"2902092")  need to know before you 
+#'@examples extractargpdata<- get_data2ponman(mode = "base",database = "incois",platform = "2902092")
+#'extractlocation_time<- get_data2ponman(mode = "geotime",location = "indian_ocean",year = "2010",month = "02")
+
 #'
 
 get_data2ponman<- function(mode,location=NULL,year=NULL,month=NULL,database=NULL,platform=NULL){

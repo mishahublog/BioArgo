@@ -27,20 +27,25 @@ get_data2ponman(mode, location = NULL, year = NULL, month = NULL,
 
 \item{database}{The database options 
 \itemize{
-  \item "aoml"
-  \item   "bodc"        
-\item    "coriolis"
-\item      "csio"
-\item      "csiro"        
-\item      "incois"        
-\item      "jma"        
-\item      "kma"        
-\item      "kordi"    
-\item      "meds"    
-\item      "nmdis"    }}
+ \item "aoml"
+ \item "bodc"        
+ \item "coriolis"
+ \item "csio"
+ \item "csiro"        
+ \item "incois"        
+ \item "jma"        
+ \item "kma"        
+ \item "kordi"    
+ \item "meds"    
+ \item "nmdis"    }}
 
-\item{platform}{}
+\item{platform}{which is a number(eg:"2902092")  need to know before you}
 }
 \description{
 This function enables to access datasets from FTP servers from ifremer.It helps to access databases on two different modes.
+}
+\examples{
+extractargpdata<- get_data2ponman(mode = "base",database = "incois",platform = "2902092")
+extractlocation_time<- get_data2ponman(mode = "geotime",location = "indian_ocean",year = "2010",month = "02")
+
 }
