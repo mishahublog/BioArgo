@@ -7,7 +7,7 @@ BioArgo floats are
 
 ## Get data to ponman
 
-Getting data to ponman can attain in two ways. Since API programing is not available, the database can be access by FTP(File transfer protocol) or you can manually download to the working directory. 
+Getting data to ponman can attain in two ways. Since API programming is not available, the database can be access by FTP(File transfer protocol) or you can manually download to the working directory. 
 
 ```
 #extract data from a location and time
@@ -45,7 +45,7 @@ Type the file name you want to download: 20100226_prof.nc
 
 ## Reading single files
 
-After downloading the datasets in working directory. It could be simply readed by the function "ExtractBioArgo"
+After downloading the data-sets in working directory. It could be simply read by the function "ExtractBioArgo"
 
 ```
 Readprofile_1 <- ExtractBioArgo(bioarg = "2902092_001_20180531065847123.nc")
@@ -68,6 +68,84 @@ Horray!!, All paramters available
 [ reached getOption("max.print") -- omitted some rows ]
 
 ```
+## Batch processing of multiple files
+
+Reading multiple files are very convenient for section graphs and comprehensive analysis. To attain this we need to make list of profiles. Here we are going to make a list of profiles from 2013 of platform 2902092.
+
+####Before execuiting the codes be sure about the working directory, check your datasets there.
+
+```
+list.files()
+
+
+[1] "2902092_001_20180531065847123.nc" "2902092_002_20180531065955638.nc" "2902092_003_20180531070031783.nc"
+ [4] "2902092_004_20180531070106448.nc" "2902092_005_20180531070157113.nc" "2902092_006_20180531070239736.nc"
+ [7] "2902092_007_20180531070456557.nc" "2902092_008_20180531070528935.nc" "2902092_009_20180531070606146.nc"
+[10] "2902092_010_20180531070643511.nc" "2902092_011_20180604072048784.nc" "2902092_012_20180604072134870.nc"
+[13] "2902092_013_20180604072205241.nc" "2902092_014_20180604072235039.nc" "2902092_015_20180604072258139.nc"
+[16] "2902092_016_20180604072347083.nc" "2902092_018_20180604072511656.nc" "2902092_019_20180604072543416.nc"
+[19] "2902092_020_20180604072837202.nc" "2902092_021_20180604081553398.nc" "2902092_022_20180604081620427.nc"
+[22] "2902092_023_20180605150436103.nc" "2902092_024_20180605150531084.nc" "2902092_025_20180605150603553.nc"
+[25] "2902092_026_20180607052540419.nc" "2902092_027_20180607052622437.nc" "2902092_028_20180607052724234.nc"
+[28] "2902092_029_20180607052801723.nc" "2902092_030_20180607052832895.nc" "2902092_031_20180607052859008.nc"
+[31] "2902092_032_20180607052923673.nc" "2902092_033_20180607052942654.nc" "2902092_034_20180607053022688.nc"
+[34] "2902092_035_20180607053230011.nc" "2902092_036_20180607053713007.nc" "2902092_037_20180629043808803.nc"
+[37] "2902092_038_20180629043907204.nc" "2902092_039_20180629043957566.nc" "2902092_040_20180629044036565.nc"
+[40] "2902092_041_20180629044119761.nc"
+
+```
+save your list by giving a name and execute "batch" function
+
+```
+profile_list2013<- list.files()
+
+batch(profile_list2013)
+
+```
+of course you need to give a name to batch function too
+
+```
+> profiles2013<- batch(profile_list2013)
+Horray!!, All paramters available
+Horray!!, All paramters available
+Horray!!, All paramters available
+Horray!!, All paramters available
+Horray!!, All paramters available
+Horray!!, All paramters available
+Horray!!, All paramters available
+Horray!!, All paramters available
+Horray!!, All paramters available
+Horray!!, All paramters available
+Horray!!, All paramters available
+Horray!!, All paramters available
+Horray!!, All paramters available
+Horray!!, All paramters available
+Horray!!, All paramters available
+Horray!!, All paramters available
+Horray!!, All paramters available
+Horray!!, All paramters available
+Horray!!, All paramters available
+[  omitted some rows ]
+
+```
+There will be a notification if all the parametrs are available for each profiles
+
+"Horray!!, All paramters available"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
