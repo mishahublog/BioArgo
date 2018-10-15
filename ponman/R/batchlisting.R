@@ -3,7 +3,7 @@
 ### Batch processsing of Argo files 
 ##====================================================================================
 #'
-#'Batch listing of Argo profiles
+#'Batch listing of Argo profiles(Bioargo)
 #'
 #'
 #'Listing of Argo profiles in a batch, it helps in collective analysis of specific sections. Very useful in making time series, contour and filled section contours
