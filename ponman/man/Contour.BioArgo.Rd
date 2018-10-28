@@ -13,7 +13,7 @@
   \item Backscatter - "backscatter"
 }}
 \usage{
-Contour.BioArgo(Argolist, overview = FALSE, parameter, ...)
+Contour.BioArgo(Argolist, overview = TRUE, parameter, ...)
 }
 \arguments{
 \item{Argolist}{A list of Argo profiles return from function: ExtractBioArgo()}

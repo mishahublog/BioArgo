@@ -29,6 +29,8 @@ Filledsectionplots(Argolist, parameter, col.val, overlay = TRUE,
 \arguments{
 \item{Argolist}{is a list BioArgo extracted as a output from extractbioArgo function}
 
+\item{parameter}{A character string(only work when overview is FALSE)}
+
 \item{col.val}{amount of colours used in the palette, Here we used matlab.like from library(colorRamps)}
 
 \item{overlay}{Another parameter to compare}
@@ -36,6 +38,14 @@ Filledsectionplots(Argolist, parameter, col.val, overlay = TRUE,
 \item{...}{All other arguments of filled.contour \code{\link[graphics]{filled.contour}}}
 
 \item{Parameter}{defines the parameters such as temp, sal,etc}
+
+\item{Argolist}{A list of Argo profiles return from function: ExtractBioArgo()}
+
+\item{overview}{A logical value whether you plot the overview, default is FALSE}
+
+\item{...}{All other arguments of basic contour funtion  \code{\link[graphics]{contour}}
+
+\code{\link[graphics]{contour}}}
 }
 \description{
 This function generates filled contour plots of defined paramters. Before plotting the datasets can be trimmed
@@ -49,7 +59,18 @@ title(main = "chlorophyll")#Adding a title
 legend("bottom",legend = "temperature",lwd = 1)#Adding Legend
 
 
+Display contours from BioArgo profiles
+
+
+This function displays contours from Argo profiles for each parameters. An elaborate overview available for display all major parameters
+. Be sure to trim the dataset before plotting(optional)
+Contour.BioArgo(Argolist= myfloatlist,overview = TRUE)# when you want a overview
+Contour.BioArgo(Argolist = myfloatlist,parameter = "chlorophyll")# Single paramters
+Contour.BioArgo(Argolist = myfloatlist,parameter = "chlorophyll",nlevels=20)# Add more Arguments of contour functions
+
 }
 \author{
+Midhun shah Hussain
+
 Midhun shah Hussain
 }

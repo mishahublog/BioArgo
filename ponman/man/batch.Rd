@@ -2,7 +2,7 @@
 % Please edit documentation in R/batchlisting.R
 \name{batch}
 \alias{batch}
-\title{Batch listing of Argo profiles}
+\title{Batch listing of Argo profiles(Bioargo)}
 \usage{
 batch(filenames)
 }

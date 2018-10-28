@@ -34,7 +34,7 @@
 #'Contour.BioArgo(Argolist = myfloatlist,parameter = "chlorophyll")# Single paramters
 #'Contour.BioArgo(Argolist = myfloatlist,parameter = "chlorophyll",nlevels=20)# Add more Arguments of contour functions
 #'
-Contour.BioArgo<- function(Argolist,overview=FALSE,parameter,...)
+Contour.BioArgo<- function(Argolist,overview=TRUE,parameter,...)
 #Data formating
 {maxfac<- max(as.numeric(lapply(1:length(Argolist),function(x)length(Argolist[[x]]$pressure))))
 listlat<- lapply(1:length(Argolist),function(x)c(Argolist[[x]]$latitude,rep(NA,Mod(length(Argolist[[x]]$latitude)-(maxfac)))))
