@@ -36,6 +36,7 @@
 #'   \item Backscatter - "backscatter"
 #'   \item sigma       - "sigma"
 #'   \item sigma1000   - "sigma1000"
+#'   \item Bouyancy frequency(N2)   - "N2"
 #' }
 #' 
 #' 
