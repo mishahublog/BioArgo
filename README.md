@@ -2,7 +2,7 @@
 
 # Ponman : A package for BioArgo data Analysis
 
-BioArgo floats are 
+Ponman is an R Language implementation developed to reduce the data-researcher barrier to promote the effective use of Bio-Argo floats. More than an R package it have comprehensive tool sets for the Bio-Argo, from data acquisition to plotting. Ponman is a user-friendly package for a regular R user with the aid of our detailed documentation. Oceanographers usually cluttered with enormous amount of data, for analysis and for downloading is a tedious job. Ponman for Bio-Argo could download the data direct to working directory according to your prior categories. Ponman prefers netcdf(.nc) files, which is a set of software libraries and self-describing, machine-independent data formats that support the creation, access, and sharing of array-oriented scientific data. Extraction of the data from .nc files to readable form is the first thing one could do by Ponman. 
 
 
 ## Get data to ponman
