@@ -21,6 +21,7 @@ The Argument "overlay" strings can be simply written as small letters could easi
   \item Backscatter - "backscatter"
   \item sigma       - "sigma"
   \item sigma1000   - "sigma1000"
+  \item Bouyancy frequency(N2)   - "N2"
 }}
 \usage{
 Filledsectionplots(Argolist, parameter, col.val, overlay = TRUE,
