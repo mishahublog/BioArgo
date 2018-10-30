@@ -152,7 +152,7 @@ plot_BioArgo(profiles2013[[1]])
 This is an overview, actually you can plot single profiles also, explore the options!!
 By the way you can plot your disred cycles/profiles.
 
-##Triming and filtering of data
+##Triming and filtering of data for plotting
 
 After plotting your first overview(showned above), you could trim accordingly. Mostly we want to get specific depths or in some selected dates. This could be possible by "Filter_bioArgo()"
 
