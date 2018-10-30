@@ -1,6 +1,7 @@
 
 #'
-#
+#GET DATA
+#+=====================================================
 #'Get data from FTP servers of ifremier to your PC
 #'
 #'
