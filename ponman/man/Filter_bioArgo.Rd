@@ -25,7 +25,7 @@ Filter_bioArgo(batchlist, parameter, start = NULL, end = NULL,
   month = NULL, year = NULL, day = NULL)
 }
 \arguments{
-\item{batchlist}{A list of Argo profiles return from  \code{\link{batch()}}}
+\item{batchlist}{A list of Argo profiles return from batch()}
 
 \item{parameter}{A defined number of variables, the formats are shown below}
 
@@ -41,7 +41,7 @@ Filter_bioArgo(batchlist, parameter, start = NULL, end = NULL,
 }
 \description{
 This function trims paramters effectively, including latitude, longitude, date and cycle no.Before trims
-find the range using function  \code{\link{bioArgo_Ranger()}}
+find the range using function bioArgo_Ranger()
 }
 \examples{
 Argo_February<- Filter_bioArgo(test,parameter = "date",month = "02")#select months
