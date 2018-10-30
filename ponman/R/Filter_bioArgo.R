@@ -5,9 +5,9 @@
 #'
 #'
 #'This function trims paramters effectively, including latitude, longitude, date and cycle no.Before trims
-#'find the range using function  \code{\link{bioArgo_Ranger()}}
+#'find the range using function bioArgo_Ranger()
 #'
-#'@param batchlist A list of Argo profiles return from  \code{\link{batch()}}
+#'@param batchlist A list of Argo profiles return from batch()
 #'@param parameter A defined number of variables, the formats are shown below
 #'@param start     A value,in which your range starts, Not valued when parameter is "date"
 #'@param end       A value,in which your range ends,Not valued when parameter is "date"
