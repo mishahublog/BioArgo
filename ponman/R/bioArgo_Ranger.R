@@ -7,25 +7,25 @@ bioArgo_Ranger<- function(batchlist,parameter){
   
   if(parameter=="latitude"){
     
-    r<-range(lapply(1:length(batchlist),function(x)as.numeric(unique(batchlist[[x]]$latitude))))
+    r<-range(lapply(1:length(batchlist),function(x)as.numeric(unique(batchlist[[x]]$latitude))),na.rm = TRUE)
     return(r)
   }
   
   if(parameter=="longitude"){
     
-    r<- range(lapply(1:length(batchlist),function(x)as.numeric(unique(batchlist[[x]]$longitude))))
+    r<- range(lapply(1:length(batchlist),function(x)as.numeric(unique(batchlist[[x]]$longitude))),na.rm = TRUE)
     return(r)
   }
   
   if(parameter=="cyclono"){
     
-    r<- range(lapply(1:length(batchlist),function(x)as.numeric(unique(batchlist[[x]]$cycle.no))),)
+    r<- range(lapply(1:length(batchlist),function(x)as.numeric(unique(batchlist[[x]]$cycle.no))),na.rm = TRUE)
     return(r)
   }
   
   if(parameter=="date"){
     
-    r<- range(ldply(lapply(1:length(batchlist),function(x)x<- as.Date(unique(batchlist[[x]]$Date),origin="1950-01-01")[1]))[,1])
+    r<- range(ldply(lapply(1:length(batchlist),function(x)x<- as.Date(unique(batchlist[[x]]$Date),origin="1950-01-01")[1]))[,1],na.rm = TRUE)
     return(r)
   }
   
