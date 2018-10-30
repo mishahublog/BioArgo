@@ -40,12 +40,11 @@
 #' 
 #'@param platform which is a number(eg:"2902092")  need to know before you 
 #'@examples extractargpdata<- get_data2ponman(mode = "base",database = "incois",platform = "2902092")
-#'extractlocation_time<- get_data2ponman(mode = "geotime",location = "indian_ocean",year = "2010",month = "02")
+#'@examples extractlocation_time<- get_data2ponman(mode = "geotime",location = "indian_ocean",year = "2010",month = "02")
+#'@export
 
-#'
 
 get_data2ponman<- function(mode,location=NULL,year=NULL,month=NULL,database=NULL,platform=NULL){
-library(curl)
   library(RCurl)
   if (mode=="geotime")
   {url<- paste("ftp://ftp.ifremer.fr/ifremer/argo/geo/",location,"/",year,"/",month,"/",sep = "")}
@@ -61,6 +60,7 @@ library(curl)
   if(quest== 2) {
     quest2<- readline(prompt = "Type the file name you want to download:  ")
        download.file(paste(url,quest2,sep=""),destfile = quest2)
-  }
-}
+  }}
+
+
 

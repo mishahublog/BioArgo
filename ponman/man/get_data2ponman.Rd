@@ -47,5 +47,4 @@ This function enables to access datasets from FTP servers from ifremer.It helps 
 \examples{
 extractargpdata<- get_data2ponman(mode = "base",database = "incois",platform = "2902092")
 extractlocation_time<- get_data2ponman(mode = "geotime",location = "indian_ocean",year = "2010",month = "02")
-
 }
