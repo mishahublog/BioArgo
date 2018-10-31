@@ -96,7 +96,7 @@ if (!is.null(satdata)==TRUE){
     library(rworldxtra)   
     
     Map<- getMap(resolution = "high")
-    plot(Map,xlim=lon,ylim=lat,add=TRUE)
+    plot(Map,xlim=lon,ylim=lat,add=TRUE,...)
     
     
   }
