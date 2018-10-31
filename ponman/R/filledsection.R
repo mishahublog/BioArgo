@@ -366,7 +366,7 @@ else
     totaldepthno<- max(as.numeric(lapply(1:length(Argolist),function(x)length(Argolist[[x]]$pressure))))
     depth<- lapply(1:length(Argolist),function(x)c(Argolist[[x]]$pressure,rep(NA,Mod(length(Argolist[[x]]$pressure)-(maxfac)))))
     maxdepth<- max(as.numeric(lapply(depth, function(x) x[which.max(abs(x))])))
-    mindepth<- max(as.numeric(lapply(depth, function(x) x[which.min(abs(x))])))
+    mindepth<- min(as.numeric(lapply(depth, function(x) x[which.min(abs(x))])))
     minsal<- min(as.numeric(lapply(listsal, function(x) x[which.min(abs(x))])))
     maxsal<- max(as.numeric(lapply(listsal, function(x) x[which.max(abs(x))])))
     
@@ -396,7 +396,7 @@ else
       totaldepthno<- max(as.numeric(lapply(1:length(Argolist),function(x)length(Argolist[[x]]$pressure))))
       depth<- lapply(1:length(Argolist),function(x)c(Argolist[[x]]$pressure,rep(NA,Mod(length(Argolist[[x]]$pressure)-(maxfac)))))
       maxdepth<- max(as.numeric(lapply(depth, function(x) x[which.max(abs(x))])))
-      mindepth<- max(as.numeric(lapply(depth, function(x) x[which.min(abs(x))])))
+      mindepth<- min(as.numeric(lapply(depth, function(x) x[which.min(abs(x))])))
       minoxy<- min(as.numeric(lapply(listoxy, function(x) x[which.min(abs(x))])))
       maxoxy<- max(as.numeric(lapply(listoxy, function(x) x[which.max(abs(x))])))
       
@@ -423,7 +423,7 @@ if(parameter=="chlorophyll" ){
   totaldepthno<- max(as.numeric(lapply(1:length(Argolist),function(x)length(Argolist[[x]]$pressure))))
   depth<- lapply(1:length(Argolist),function(x)c(Argolist[[x]]$pressure,rep(NA,Mod(length(Argolist[[x]]$pressure)-(maxfac)))))
   maxdepth<- max(as.numeric(lapply(depth, function(x) x[which.max(abs(x))])))
-  mindepth<- max(as.numeric(lapply(depth, function(x) x[which.min(abs(x))])))
+  mindepth<- min(as.numeric(lapply(depth, function(x) x[which.min(abs(x))])))
   minchl<- min(as.numeric(lapply(listchl, function(x) x[which.min(abs(x))])))
   maxchl<- max(as.numeric(lapply(listchl, function(x) x[which.max(abs(x))])))
   
@@ -490,7 +490,7 @@ if (mld ==TRUE){
       totaldepthno<- max(as.numeric(lapply(1:length(Argolist),function(x)length(Argolist[[x]]$pressure))))
       depth<- lapply(1:length(Argolist),function(x)c(Argolist[[x]]$pressure,rep(NA,Mod(length(Argolist[[x]]$pressure)-(maxfac)))))
       maxdepth<- max(as.numeric(lapply(depth, function(x) x[which.max(abs(x))])))
-      mindepth<- max(as.numeric(lapply(depth, function(x) x[which.min(abs(x))])))
+      mindepth<- min(as.numeric(lapply(depth, function(x) x[which.min(abs(x))])))
       minsal<- min(as.numeric(lapply(listsal, function(x) x[which.min(abs(x))])))
       maxsal<- max(as.numeric(lapply(listsal, function(x) x[which.max(abs(x))])))
       
@@ -521,7 +521,7 @@ if (mld ==TRUE){
         totaldepthno<- max(as.numeric(lapply(1:length(Argolist),function(x)length(Argolist[[x]]$pressure))))
         depth<- lapply(1:length(Argolist),function(x)c(Argolist[[x]]$pressure,rep(NA,Mod(length(Argolist[[x]]$pressure)-(maxfac)))))
         maxdepth<- max(as.numeric(lapply(depth, function(x) x[which.max(abs(x))])))
-        mindepth<- max(as.numeric(lapply(depth, function(x) x[which.min(abs(x))])))
+        mindepth<- min(as.numeric(lapply(depth, function(x) x[which.min(abs(x))])))
         minoxy<- min(as.numeric(lapply(listoxy, function(x) x[which.min(abs(x))])))
         maxoxy<- max(as.numeric(lapply(listoxy, function(x) x[which.max(abs(x))])))
         
@@ -549,7 +549,7 @@ if (mld ==TRUE){
     totaldepthno<- max(as.numeric(lapply(1:length(Argolist),function(x)length(Argolist[[x]]$pressure))))
     depth<- lapply(1:length(Argolist),function(x)c(Argolist[[x]]$pressure,rep(NA,Mod(length(Argolist[[x]]$pressure)-(maxfac)))))
     maxdepth<- max(as.numeric(lapply(depth, function(x) x[which.max(abs(x))])))
-    mindepth<- max(as.numeric(lapply(depth, function(x) x[which.min(abs(x))])))
+    mindepth<- min(as.numeric(lapply(depth, function(x) x[which.min(abs(x))])))
     minchl<- min(as.numeric(lapply(listchl, function(x) x[which.min(abs(x))])))
     maxchl<- max(as.numeric(lapply(listchl, function(x) x[which.max(abs(x))])))
     
