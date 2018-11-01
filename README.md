@@ -2,7 +2,7 @@
 
 # Ponman : A package for BioArgo data Analysis
 
-BioArgo floats are 
+Ponman is an R Language implementation developed to reduce the data-researcher barrier to promote the effective use of Bio-Argo floats. More than an R package it have comprehensive tool sets for the Bio-Argo, from data acquisition to plotting. Ponman is a user-friendly package for a regular R user with the aid of our detailed documentation. Oceanographers usually cluttered with enormous amount of data, for analysis and for downloading is a tedious job. Ponman for Bio-Argo could download the data direct to working directory according to your prior categories. Ponman prefers netcdf(.nc) files, which is a set of software libraries and self-describing, machine-independent data formats that support the creation, access, and sharing of array-oriented scientific data. Extraction of the data from .nc files to readable form is the first thing one could do by Ponman. 
 
 
 ## Get data to ponman
@@ -131,6 +131,144 @@ Horray!!, All paramters available
 There will be a notification if all the parametrs are available for each profiles
 
 "Horray!!, All paramters available"
+
+## plotting BioArgo profiles
+
+Now we have the data in hand in list form. you could browse each profiles(or each cycles) by adding numbers in 
+double squre brackets
+
+```
+profiles2013[[1]]
+
+```
+You could plot single profiles by simply type
+
+```
+plot_BioArgo(profiles2013[[1]])
+
+```
+
+![Plot single profiles](plots/singleplot.jpeg)
+This is an overview, actually you can plot single profiles also, explore the options!!
+By the way you can plot your disred cycles/profiles.
+
+##Triming and filtering of data for plotting
+
+After plotting your first overview(showned above), you could trim accordingly. Mostly we want to get specific depths or in some selected dates. This could be possible by "Filter_bioArgo()"
+
+Suppose you want to trim all the profiles to 0 to 300 pressure values
+
+```
+Filter_bioArgo(batchlist = profiles2013,parameter = "pressure",start = 0,end = 300)
+
+```
+
+Give a name and plot
+
+```
+profiles2013_0to100<- Filter_bioArgo(batchlist = profiles2013,parameter = "pressure",start = 0,end = 300)
+
+plot_BioArgo(profiles2013_0to300[[1]])
+
+```
+![Plot single profiles](plots/singleplot trimmed.jpeg)
+
+## Contour Graphs for comprehensive ocean studies
+
+Section plots helps to interpolate multiple profiles over a spatial or temporal section. As BioArgo floats are not linear in a spatial scale(due to drifting). The possible way here applied was the plotting of temporal sections.Lets start with temperature. Be sure that you data is in list, if it is not , make it using "batch()" as done above. The function Contour.BioArgo() will done this perfectly.
+
+```
+# In a simple way the function provides an overview
+
+Contour.BioArgo(Argolist = profiles2013)
+
+```
+![Plot contour overview](plots/contourplots_overview.jpeg) 
+
+
+You could also plot single paramters. check the available paramters by ? Contour.BioArgo
+
+```
+Contour.BioArgo(Argolist = profiles2013,parameter = "salinity",overview = FALSE)
+```
+
+![Plot contour salinity](plots/contour-sal.jpeg)
+
+Try changing its colour and levels using the same arguments of base contouring in R, you could also change every arguments as your wish like the default contour function.
+
+```
+#changing colour
+Contour.BioArgo(Argolist = profiles2013,parameter = "salinity",overview = FALSE,col="red")
+#changing Level
+Contour.BioArgo(Argolist = profiles2013,parameter = "salinity",overview = FALSE,col="red",nlevel=50)
+```
+![Changing of colour & Level values](plots/col & level.jpeg)
+
+
+## Filled contours and contour overlays.
+
+Filled contours are efficient ways to display overlays. Inaddition it also calculate Mixed layer Depth(MLD), there is an option to annotate it on the plots. Simply you could plot a filled contour by the function "Filledsectionplots()"
+
+```
+# You could any colour schemes, Here I used colourRamps's matlab.like() method
+
+Filledsectionplots(Argolist = profiles2013,parameter = "temperature",col.val = matlab.like(30))
+
+
+```
+
+![Plot filled contour temp](plots/fill-temperature.jpeg)
+
+There is a list of possible overlays, which you could found  by ?Filledsectionplots(). Here you could found the filled temperature with overlay of salinity.
+```
+Filledsectionplots(Argolist = profiles2013,parameter = "temperature",col.val = matlab.like(30),overlay = "salinity")
+
+```
+
+![Plot filled contour temp](plots/fill-temp-sal-over.jpeg)
+
+You can also use the trimmed data. here I am going to use the same data of above profile.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
