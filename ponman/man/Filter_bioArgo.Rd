@@ -48,9 +48,6 @@ Argo_February<- Filter_bioArgo(test,parameter = "date",month = "02")#select mont
 Argo_2013<- Filter_bioArgo(test,parameter = "date",year = "2013")#select years
 depth20.30<- Filter_bioArgo(test,parameter = "pressure",start = 20,end = 30)# Be careful that the values are numeric
 
-
-
-
 }
 \author{
 Midhun shah Hussain

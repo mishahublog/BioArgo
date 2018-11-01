@@ -17,6 +17,7 @@
 #'
 #'@format
 #'
+#'
 #'The Argument "parameter" character strings can be simply written as small letters could easily work
 #'
 #' \itemize{
@@ -41,6 +42,7 @@
 #'@examples Argo_2013<- Filter_bioArgo(test,parameter = "date",year = "2013")#select years
 #'@examples depth20.30<- Filter_bioArgo(test,parameter = "pressure",start = 20,end = 30)# Be careful that the values are numeric
 #'
+#'@export
 #'
 #'
 #'
