@@ -4,19 +4,39 @@
 \alias{Sat_bioArgo}
 \title{Mapping of BioArgo probes on geospatial  sections}
 \usage{
-Sat_bioArgo(batchlist, satdata = NULL, lat = NULL, lon = NULL,
-  legend.month = FALSE, legend.year = FALSE, ...)
+Sat_bioArgo(batchlist, satdata = NULL, satdata.type = NULL,
+  lat = NULL, lon = NULL, pix = 0.5, pix.axis = 10,
+  legend.month = FALSE, legend.year = FALSE, sat.info = TRUE,
+  attr.col = "white", col.txt = "white", land, ...)
 }
 \arguments{
 \item{batchlist}{list of Argo profiles(BioArgo)}
+
+\item{satdata}{climatology data in .nc format(optional)}
+
+\item{satdata.type}{Type of data 
+\itemize{
+  \item chlorophyll: "chl"
+  \item Sea Surface Temperature: "sst"
+  \item Short wave radiation: "swr"}}
 
 \item{lat}{Latitude}
 
 \item{lon}{Longitude}
 
-\item{...}{Possible arguments for basic or raster maping}
+\item{pix}{Pixel density}
 
-\item{satadata}{climatology data in .nc format(optional)}
+\item{pix.axis}{pixel legend}
+
+\item{sat.info}{A logical argument for showing attributes of remote sensing data}
+
+\item{attr.col}{Background colour of attribute box}
+
+\item{col.txt}{Text color of attribute box}
+
+\item{land}{color argument for land, when remote sensing data are absent}
+
+\item{...}{Possible arguments for basic or raster maping}
 
 \item{Legend.month}{Legend for months}
 

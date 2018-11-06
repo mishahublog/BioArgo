@@ -26,7 +26,7 @@ ExtractArgo<- function(argo) {
   #================================================================================================================
   if (is.null(psal)){
     warning("salinity missing")
-    para<- list(chl,oxy,temp,pres)
+    para<- list(temp,pres)
     #find least length 
     trimfac<- min(as.numeric(lapply(para, function(x)length(x))))
     date<- rep(as.Date(as.numeric(unique(argo$JULD)),origin="1950-01-01"),trimfac)
@@ -44,24 +44,7 @@ ExtractArgo<- function(argo) {
   }
   
   
-  if (is.null(oxy)){
-    warning("oxygen missing")
-    para<- list(psal,temp,pres)
-    #find least length 
-    trimfac<- min(as.numeric(lapply(para, function(x)length(x))))
-    date<- rep(as.Date(as.numeric(unique(argo$JULD)),origin="1950-01-01"),trimfac)
-    lat<-  rep(as.numeric(Most_freq(argo$LATITUDE)),trimfac)
-    lon<-  rep(as.numeric(Most_freq(argo$LONGITUDE)),trimfac)
-    
-    
-   
-    
-    data0<- data.frame(Date=date[1:trimfac],latitude=lat[1:trimfac],longitude=lon[1:trimfac],cycle.no=cycle.no[1:trimfac],pressure=pres[1:trimfac],
-                       temperature=temp[1:trimfac],salinity=psal[1:trimfac])
-    return(data0)
-    
-    
-  }
+
   
   
   else 
