@@ -7,10 +7,11 @@ Ponman is an R Language implementation developed to reduce the data-researcher b
 
 As ponman was not officially launced in CRAN, it need to download from github. please follow the instructions
 
+```
 install.packages(devtools)
 library(devtools)
 install_github("mishahublog/BioArgo/ponman",ref = "ponman")
-
+```
 ## Get data to ponman
 
 Getting data to ponman can attain in two ways. Since API programming is not available, the database can be access by FTP(File transfer protocol) or you can manually download to the working directory. 
