@@ -209,7 +209,14 @@ Contour.BioArgo(Argolist = profiles2013,parameter = "salinity",overview = FALSE,
 #changing Level
 Contour.BioArgo(Argolist = profiles2013,parameter = "salinity",overview = FALSE,col="red",nlevel=50)
 ```
+
+
+
+
 ![Changing of colour & Level values](plots/col & level.jpeg)
+
+
+
 
 
 ## Filled contours and contour overlays.
