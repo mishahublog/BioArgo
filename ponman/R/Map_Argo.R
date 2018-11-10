@@ -23,6 +23,7 @@
 #'@param sat.info A logical argument for showing attributes of remote sensing data
 #'@param attr.col Background colour of attribute box
 #'@param col.txt Text color of attribute box
+#'@param satland land colour on satellite overlay
 #'@param land color argument for land, when remote sensing data are absent
 #'@param ...         Possible arguments for basic or raster maping
 #'
@@ -40,7 +41,7 @@
 
 
 Sat_bioArgo<- function(batchlist,satdata=NULL,satdata.type=NULL,lat=NULL,lon=NULL,pix=0.5, pix.axis=10,
-                       legend.month=FALSE,legend.year=FALSE,sat.info=TRUE,attr.col="white",col.txt="white",
+                       legend.month=FALSE,legend.year=FALSE,sat.info=TRUE,attr.col="white",satland=NULL,col.txt="white",
                        land,...){
   library(raster)
   library(colorRamps)
@@ -86,7 +87,7 @@ Sat_bioArgo<- function(batchlist,satdata=NULL,satdata.type=NULL,lat=NULL,lon=NUL
     library(rworldxtra)   
     
     Map<- getMap(resolution = "high")
-    plot(Map,xlim=lonmap,ylim=latmap,add=TRUE,...)
+    plot(Map,xlim=lonmap,ylim=latmap,col=satland,add=TRUE,...)
     
     
     par(mfrow=c(1,1),new=FALSE,oma=c(2,2,0,0))
@@ -158,7 +159,7 @@ Sat_bioArgo<- function(batchlist,satdata=NULL,satdata.type=NULL,lat=NULL,lon=NUL
     library(rworldxtra)   
     
     Map<- getMap(resolution = "high")
-    plot(Map,xlim=lonmap,ylim=latmap,add=TRUE,...)
+    plot(Map,xlim=lonmap,ylim=latmap,col=satland,add=TRUE,...)
     
     
     par(mfrow=c(1,1),new=FALSE,oma=c(2,2,0,0))
@@ -226,7 +227,7 @@ Sat_bioArgo<- function(batchlist,satdata=NULL,satdata.type=NULL,lat=NULL,lon=NUL
     library(rworldxtra)   
     
     Map<- getMap(resolution = "high")
-    plot(Map,xlim=lonmap,ylim=latmap,add=TRUE,...)
+    plot(Map,xlim=lonmap,ylim=latmap,col=satland,add=TRUE,...)
     
     
     par(mfrow=c(1,1),new=FALSE,oma=c(2,2,0,0))
@@ -285,7 +286,7 @@ Sat_bioArgo<- function(batchlist,satdata=NULL,satdata.type=NULL,lat=NULL,lon=NUL
     
     par(mar=c(4,4,1,1))
     Map<- getMap(resolution = "high")
-    plot(Map,xlim=lonmap,ylim=latmap,col= land,...)
+    plot(Map,xlim=lonmap,ylim=latmap,col=satland,col= land,...)
     
     
     axis(1)

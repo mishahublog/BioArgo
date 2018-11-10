@@ -7,7 +7,7 @@
 Sat_bioArgo(batchlist, satdata = NULL, satdata.type = NULL,
   lat = NULL, lon = NULL, pix = 0.5, pix.axis = 10,
   legend.month = FALSE, legend.year = FALSE, sat.info = TRUE,
-  attr.col = "white", col.txt = "white", land, ...)
+  attr.col = "white", satland = NULL, col.txt = "white", land, ...)
 }
 \arguments{
 \item{batchlist}{list of Argo profiles(BioArgo)}
@@ -31,6 +31,8 @@ Sat_bioArgo(batchlist, satdata = NULL, satdata.type = NULL,
 \item{sat.info}{A logical argument for showing attributes of remote sensing data}
 
 \item{attr.col}{Background colour of attribute box}
+
+\item{satland}{land colour on satellite overlay}
 
 \item{col.txt}{Text color of attribute box}
 
