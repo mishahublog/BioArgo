@@ -28,7 +28,15 @@
 #'
 #'@export
 #'
+#'@author  Midhun shah Hussain
 #'
+#'@examples plot_locations_only<-  Sat_bioArgo(profile2013,lat = c(15,22),lon = c(65,70),land = "red")
+#'@examples plot_with_rsdata<- Sat_bioArgo(profile2013,lat = c(15,22),lon = c(65,70),
+#'         satdata = "~/MEGAsync/Data/midhunshah-Argo/A20030602018090.L3m_MC_CHL_chlor_a_4km.nc",satdata.type = 'chl')
+#'@examples plot_rsdata_Legend<- Sat_bioArgo(profile2013,lat = c(15,22),lon = c(65,70),
+#'          satdata = "~/MEGAsync/Data/midhunshah-Argo/A20030602018090.L3m_MC_CHL_chlor_a_4km.nc",satdata.type = 'chl',legend.month=TRUE)       
+#'         
+#'         
 
 
 Sat_bioArgo<- function(batchlist,satdata=NULL,satdata.type=NULL,lat=NULL,lon=NULL,pix=0.5, pix.axis=10,
@@ -36,6 +44,10 @@ Sat_bioArgo<- function(batchlist,satdata=NULL,satdata.type=NULL,lat=NULL,lon=NUL
                        land,...){
   library(raster)
   library(colorRamps)
+  
+  if(is.null(lat) & is.null(lon)){
+    stop("Add coordinates or add satellite data")
+  }else (print("coordinates found"))
   
   #check RS data there
   #for Chl============  
@@ -249,7 +261,7 @@ Sat_bioArgo<- function(batchlist,satdata=NULL,satdata.type=NULL,lat=NULL,lon=NUL
              col="black",pch = 25,title = "Years")
     }}
   
-  
+  else
   
   if (!is.null(lat) &&!is.null(lon)&& is.null(satdata))
   {
@@ -257,6 +269,7 @@ Sat_bioArgo<- function(batchlist,satdata=NULL,satdata.type=NULL,lat=NULL,lon=NUL
     library(raster)
     lat<- lat
     lon<- lon
+   
     
     latmap<- c(range(lat)[1]-5,range(lat)[2]+5)
     lonmap<- c(range(lon)[1]-5,range(lon)[2]+5)

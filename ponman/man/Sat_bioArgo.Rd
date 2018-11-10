@@ -46,3 +46,15 @@ Sat_bioArgo(batchlist, satdata = NULL, satdata.type = NULL,
 Mapping of BioArgo Trajectory to get an overiview on its spatial coverage. Along with this, a climatology implimentation using remote sensing data-sets can be possible.This function can be efficiently used by adding manual coordinates.
 This mapping system also helps in monthly distribution of BioArgo floats
 }
+\examples{
+plot_locations_only<-  Sat_bioArgo(profile2013,lat = c(15,22),lon = c(65,70),land = "red")
+plot_with_rsdata<- Sat_bioArgo(profile2013,lat = c(15,22),lon = c(65,70),
+        satdata = "~/MEGAsync/Data/midhunshah-Argo/A20030602018090.L3m_MC_CHL_chlor_a_4km.nc",satdata.type = 'chl')
+plot_rsdata_Legend<- Sat_bioArgo(profile2013,lat = c(15,22),lon = c(65,70),
+         satdata = "~/MEGAsync/Data/midhunshah-Argo/A20030602018090.L3m_MC_CHL_chlor_a_4km.nc",satdata.type = 'chl',legend.month=TRUE)       
+        
+        
+}
+\author{
+Midhun shah Hussain
+}
