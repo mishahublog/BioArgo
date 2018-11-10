@@ -45,9 +45,8 @@ Sat_bioArgo<- function(batchlist,satdata=NULL,satdata.type=NULL,lat=NULL,lon=NUL
   library(raster)
   library(colorRamps)
   
-  if(is.null(lat) & is.null(lon)){
-    stop("Add coordinates or add satellite data")
-  }else (print("coordinates found"))
+  if(is.null(lat) & is.null(lon) & is.null(satdata)){
+    stop("Add coordinates or add satellite data")}
   
   #check RS data there
   #for Chl============  
@@ -261,7 +260,7 @@ Sat_bioArgo<- function(batchlist,satdata=NULL,satdata.type=NULL,lat=NULL,lon=NUL
              col="black",pch = 25,title = "Years")
     }}
   
-  else
+
   
   if (!is.null(lat) &&!is.null(lon)&& is.null(satdata))
   {
