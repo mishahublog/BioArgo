@@ -269,7 +269,7 @@ Mapping options in __ponman__ includes plotting Argo trajectories,along with sur
  
 ```
 Argo float trajectory with sea surface chlorophylls         |  Argo float trajectory with Sea Surface Temperature(SST)
-:---------------------------:|:----------------------------:
+:---------------------------:|:------------------------------:
 ![Plot MODIS Aqua chlorophyll with Argo trajectory ](plots/map_chl_month.jpeg) | ![Plot MODIS Aqua chlorophyll with Argo trajectory ](plots/map_temp.jpeg) 
 
 
