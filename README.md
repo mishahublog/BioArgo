@@ -1,30 +1,33 @@
 
 
-# Ponman : A package for BioArgo data Analysis
+# _ponman_ : A package for BioArgo data Analysis
 
-Ponman is an R Language implementation developed to reduce the data-researcher barrier to promote the effective use of Bio-Argo floats. More than an R package it have comprehensive tool sets for the Bio-Argo, from data acquisition to plotting. Ponman is a user-friendly package for a regular R user with the aid of our detailed documentation. Oceanographers usually cluttered with enormous amount of data, for analysis and for downloading is a tedious job. Ponman for Bio-Argo could download the data direct to working directory according to your prior categories. Ponman prefers netcdf(.nc) files, which is a set of software libraries and self-describing, machine-independent data formats that support the creation, access, and sharing of array-oriented scientific data. Extraction of the data from .nc files to readable form is the first thing one could do by Ponman. 
-## How install ponman
+_ponman_ is an R Language implementation developed to reduce the data-researcher barrier to promote the effective use of Bio-Argo floats. More than an R package it have comprehensive tool sets for the Bio-Argo, from data acquisition to plotting. _ponman_ is a user-friendly package for a regular R user with the aid of our detailed documentation. Oceanographers usually cluttered with enormous amount of data, for analysis and for downloading is a tedious job. _ponman_ for Bio-Argo could download the data direct to working directory according to your prior categories. _ponman_ prefers netcdf(.nc) files, which is a set of software libraries and self-describing, machine-independent data formats that support the creation, access, and sharing of array-oriented scientific data. Extraction of the data from .nc files to readable form is the first thing one could do by _ponman_. 
 
-As ponman was not officially launced in CRAN, it need to download from github. please follow the instructions
 
+## How to install _ponman_
+
+As _ponman_ was not officially launched in CRAN, it need to download from github. please follow the instructions
+
+```
 install.packages(devtools)
 library(devtools)
-install_github("mishahublog/BioArgo/ponman",ref = "ponman")
+install_github("mishahublog/BioArgo/_ponman_",ref = "_ponman_")
+```
+## Get data to _ponman_
 
-## Get data to ponman
-
-Getting data to ponman can attain in two ways. Since API programming is not available, the database can be access by FTP(File transfer protocol) or you can manually download to the working directory. 
+Getting data to _ponman_ can attain in two ways. Since API programming is not available, the database can be access by FTP(File transfer protocol) or you can manually download to the working directory. 
 
 ```
 #extract data from a location and time
-extractlocation_time<- get_data2ponman(mode = "geotime",location = "indian_ocean",year = "2010",month = "02")
+extractlocation_time<- get_data2_ponman_(mode = "geotime",location = "indian_ocean",year = "2010",month = "02")
 
 ```
 
 You will get an output with a choice to download multiple to single files
 
 ```
-get_data2ponman(mode = "geotime",location = "indian_ocean",year = "2010",month = "02")
+get_data2_ponman_(mode = "geotime",location = "indian_ocean",year = "2010",month = "02")
 
  [1] "20100201_prof.nc" "20100202_prof.nc" "20100203_prof.nc" "20100204_prof.nc" "20100205_prof.nc" "20100206_prof.nc"
  [7] "20100207_prof.nc" "20100208_prof.nc" "20100209_prof.nc" "20100210_prof.nc" "20100211_prof.nc" "20100212_prof.nc"
@@ -134,14 +137,14 @@ Horray!!, All paramters available
 [  omitted some rows ]
 
 ```
-There will be a notification if all the parametrs are available for each profiles
+There will be a notification if all the parameters are available for each profiles
 
-"Horray!!, All paramters available"
+"Horray!!, All parameters available"
 
 ## plotting BioArgo profiles
 
 Now we have the data in hand in list form. you could browse each profiles(or each cycles) by adding numbers in 
-double squre brackets
+double square brackets
 
 ```
 profiles2013[[1]]
@@ -156,7 +159,7 @@ plot_BioArgo(profiles2013[[1]])
 
 ![Plot single profiles](plots/singleplot.jpeg)
 This is an overview, actually you can plot single profiles also, explore the options!!
-By the way you can plot your disred cycles/profiles.
+By the way you can plot your desired cycles/profiles.
 
 ##Triming and filtering of data for plotting
 
@@ -210,6 +213,7 @@ Contour.BioArgo(Argolist = profiles2013,parameter = "salinity",overview = FALSE,
 ```
 ![Changing of colour & Level values](plots/col & level.jpeg)
 
+The contour plots will follow most of the arguments of native contour function
 
 ## Filled contours and contour overlays.
 
@@ -233,7 +237,66 @@ Filledsectionplots(Argolist = profiles2013,parameter = "temperature",col.val = m
 
 ![Plot filled contour temp](plots/fill-temp-sal-over.jpeg)
 
-You can also use the trimmed data. here I am going to use the same data of above profile.
+You can also use the trimmed data. here I am going to use the same data of above profile. 
+
+
+![Plot filled contour temp](plots/trim_tem_sal.jpeg)
+
+
+##Derived parameters
+
+_ponman_ also generate derived parameters such as density(), Mixed Layer Depth (MLD-m) and buoyancy frequency(N2) using the R package “gsw”. These parameters can be contoured as an overlay on filled contour of any basic parameter(Fig7). More additions of derived parameters in _ponman_ are in progress. 
+
+```
+Filledsectionplots(Argolist = profile2013,parameter = "chlorophyll",col.val = matlab.like(30),overlay = "N2")
+
+```
+![Plot chlorophyll with Bouyancy Frequency(N2) overlay](plots/chl_N2_overlay.jpeg)
+
+
+## Mapping Argo floats locations  
+
+Mapping options in __ponman__ includes plotting Argo trajectories,along with surface maps embedded with remote sensing data in the relevant time domain. Embedding remote sensing data using _ponman_ needs more improvements from the current version, which needs to download in the working directory before plotting.Besides, the native arguments of R plots such as changing colors or line widths are still possible. A few examples are given below
+
+
+```
+
+ Sat_bioArgo(batchlist = profile2013,
+ satdata = "plots/RSdata/A20030602018090.L3m_MC_CHL_chlor_a_4km.nc",# Adding remote sensing data
+ satdata.type = "chl",# Mention the type
+ satland ="grey",#Land colour
+ legend.month = TRUE)# Adding legends with month
+ 
+```
+Argo float trajectory with sea surface chlorophylls         |  Argo float trajectory with Sea Surface Temperature(SST)
+:---------------------------:|:----------------------------:
+![Plot MODIS Aqua chlorophyll with Argo trajectory ](plots/map_chl_month.jpeg) | ![Plot MODIS Aqua chlorophyll with Argo trajectory ](plots/map_temp.jpeg) 
+
+
+  
+
+## Future scope of _ponman_
+
+The same way __ponman__ can add SST and PAR data from Aqua MODIS. Currently the datasets are need to be download seperately for overlay analysis. In near future, the data aquisition will also be add.We promised to add more features with more efficient object oriented programing(OOP). By the way,we are looking forward more suggestions from user base. Also we suggest to all users those who pursuing publications are requested to cite _ponman_, gst access the format as follows.
+
+```
+citation(ponman)
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
