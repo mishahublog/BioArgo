@@ -12,6 +12,3 @@ export(batch)
 export(get_data2ponman)
 export(plot_BioArgo)
 import(crayon)
-
-
-

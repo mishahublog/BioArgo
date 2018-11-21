@@ -6,6 +6,7 @@ Author: Midhun shah Hussain, Smitha B.R.
 Maintainer: Midhun shah Hussain<mishahueco@gmail.com>
 Description:This is a toolbox for data mining,analysis and statistics from BioArgo floats.This package can be used for time series analysis,spatial extensions of oceanographic parameters.Single profile analysis, multiple profile analysis,trimming and filtering of parameters.Mapping of Argo floats,interpolation of spatial values,comparison with remote sensing datasets.
 License: GPL (>= 3)
+URL:https://mishahublog.github.io/BioArgo/
 Imports:crayon, RNetCDF
 Encoding: UTF-8
 LazyData: true
