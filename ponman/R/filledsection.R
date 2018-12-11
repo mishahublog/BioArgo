@@ -95,8 +95,8 @@ find_mld<- function(Argoprofile){
   library(gsw)
   sigma<- gsw_sigma0(SA = Argoprofile$salinity,CT = Argoprofile$temperature)
   dat<- data.frame(sigma,pressure=Argoprofile$pressure)
-  pres<- rownames(subset(dat,dat$pressure>=9 & Argoprofile$pressure<=10))[1]
-  sig03<- sigma[as.numeric(pres)]+0.02
+  pres<- rownames(subset(dat,dat$pressure>=5 & Argoprofile$pressure<=10))[1]
+  sig03<- sigma[as.numeric(pres)]+0.1
   mld<- subset(dat,dat$sigma>=sig03 )[2,2]
   return(mld)
 }
@@ -353,7 +353,7 @@ if(parameter=="temperature" ){
                    Contour.overlay(Argolist,parameter = overlay,add=TRUE)
                      },
                  key.title = title(main=expression(~degree~C),cex.main=1),
-                 key.axes = axis(4, seq(mintemp,maxtemp, length.out =  10)),...)
+                 key.axes = axis(4, as.integer(seq(mintemp,maxtemp, length.out =  10)),...))
   
   return(xdata1)
   
@@ -383,7 +383,7 @@ else
                    ;Contour.overlay(Argolist,parameter = overlay,add=TRUE)
                    },
                    key.title = title(main="PSU"),
-                   key.axes = axis(4, seq(minsal, maxsal, length.out =  10))
+                   key.axes = axis(4, as.integer(seq(minsal, maxsal, length.out =  10)))
                    ,...)
     
     return(xdata1)
@@ -413,7 +413,7 @@ else
                        Contour.overlay(Argolist,parameter = overlay,add=TRUE)
                        },
                      key.title = title(main=expression(paste(mu,"mol/kg")),cex.main=1),
-                     key.axes = axis(4, seq(minoxy, maxoxy, length.out =  10)),...)
+                     key.axes = axis(4, as.integer(seq(minoxy, maxoxy, length.out =  10)),...))
       
       return(xdata1)
     }
@@ -441,7 +441,7 @@ if(parameter=="chlorophyll" ){
                    }
                    ,
                  key.title = title(main=expression("mg"/{m}^3)),
-                 key.axes = axis(4, seq(minchl,maxchl, length.out =  10)),...)
+                 key.axes = axis(4, as.integer(seq(minchl,maxchl, length.out =  10)),...))
   
   return(xdata1)}}
 
@@ -477,7 +477,7 @@ if (mld ==TRUE){
                    plot(datmld$x,-datmld$mld,xaxt="n",yaxt="n",xlab="",ylab="",type="l")
                  },
                  key.title = title(main=expression(~degree~C),cex.main=1),
-                 key.axes = axis(4, seq(mintemp,maxtemp, length.out =  10)),...)
+                 key.axes = axis(4, as.integer(seq(mintemp,maxtemp, length.out =  10)),...))
   
   return(xdata1)
 
@@ -508,7 +508,7 @@ if (mld ==TRUE){
                        plot(datmld$x,-datmld$mld,xaxt="n",yaxt="n",xlab="",ylab="",type="l")
                      },
                      key.title = title(main="PSU"),
-                     key.axes = axis(4, seq(minsal, maxsal, length.out =  10))
+                     key.axes = axis(4, as.integer(seq(minsal, maxsal, length.out =  10)))
                      ,...)
       
       return(xdata1)
@@ -539,7 +539,7 @@ if (mld ==TRUE){
                          plot(datmld$x,-datmld$mld,xaxt="n",yaxt="n",xlab="",ylab="",type="l")
                        },
                        key.title = title(main=expression(paste(mu,"mol/kg")),cex.main=1),
-                       key.axes = axis(4, seq(minoxy, maxoxy, length.out =  10)),...)
+                       key.axes = axis(4, as.integer(seq(minoxy, maxoxy, length.out =  10))),...)
         
         return(xdata1)
       }
@@ -568,7 +568,7 @@ if (mld ==TRUE){
                    }
                    ,
                    key.title = title(main=expression("mg"/{m}^3)),
-                   key.axes = axis(4, seq(minchl,maxchl, length.out =  10)),...)
+                   key.axes = axis(4, as.integer(seq(minchl,maxchl, length.out =  10)),...))
     
     return(xdata1)}}
 
