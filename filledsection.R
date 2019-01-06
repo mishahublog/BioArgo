@@ -66,7 +66,7 @@ if(parameter=="temperature" ){
                    axis(2,at=seq(1,totaldepthno,length.out = 25),
                         labels = rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))},
                  key.title = title(main=expression(~degree~C),cex.main=1),
-                 key.axes = axis(4, seq(mintemp,maxtemp, length.out =  10)),...)
+                 key.axes = axis(4, round(seq(mintemp,maxtemp, length.out =  10))),...)
   
   return(xdata1)
   
@@ -94,7 +94,7 @@ else
                      axis(2,at=seq(1,totaldepthno,length.out = 25),
                           labels = rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))},
                    key.title = title(main="PSU"),
-                   key.axes = axis(4, seq(minsal, maxsal, length.out =  10)),...)
+                   key.axes = axis(4, round(seq(minsal, maxsal, length.out =  10),3)),...)
     
     return(xdata1)
     
@@ -121,7 +121,7 @@ else
                        axis(2,at=seq(1,totaldepthno,length.out = 25),
                             labels = rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))},
                      key.title = title(main=expression(paste(mu,"mol/kg")),cex.main=1),
-                     key.axes = axis(4, seq(minoxy, maxoxy, length.out =  10)),...)
+                     key.axes = axis(4, round(seq(minoxy, maxoxy, length.out =  10),3)),...)
       
       return(xdata1)
     }
@@ -146,7 +146,7 @@ if(parameter=="chlorophyll" ){
                    axis(2,at=seq(1,totaldepthno,length.out = 25),
                         labels = rev(as.integer(seq(mindepth,maxdepth,length.out = 25))))},
                  key.title = title(main=expression("mg"/{m}^3)),
-                 key.axes = axis(4, seq(minchl,maxchl, length.out =  10)),...)
+                 key.axes = axis(4, round(seq(minchl,maxchl, length.out =  10),2)),...)
   
   return(xdata1)}
 #+++++++++++++++++++++=============================================================================================
