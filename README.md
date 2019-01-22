@@ -1,6 +1,7 @@
 
 
 # _ponman_ : A package for BioArgo data Analysis
+####  _Midhun Shah Hussain & Smitha B. R._
 
 _ponman_ is an R Language implementation developed to reduce the data-researcher barrier to promote the effective use of Bio-Argo floats. More than an R package it have comprehensive tool sets for the Bio-Argo, from data acquisition to plotting. _ponman_ is a user-friendly package for a regular R user with the aid of our detailed documentation. Oceanographers usually cluttered with enormous amount of data, for analysis and for downloading is a tedious job. _ponman_ for Bio-Argo could download the data direct to working directory according to your prior categories. _ponman_ prefers netcdf(.nc) files, which is a set of software libraries and self-describing, machine-independent data formats that support the creation, access, and sharing of array-oriented scientific data. Extraction of the data from .nc files to readable form is the first thing one could do by _ponman_. 
 
@@ -10,9 +11,9 @@ _ponman_ is an R Language implementation developed to reduce the data-researcher
 As _ponman_ was not officially launched in CRAN, it need to download from github. please follow the instructions
 
 ```
-install.packages(devtools)
+install.packages("devtools")
 library(devtools)
-install_github("mishahublog/BioArgo/_ponman_",ref = "_ponman_")
+install_github("mishahublog/BioArgo/ponman",ref = "ponman")
 ```
 ## Get data to _ponman_
 
@@ -277,7 +278,7 @@ Argo float trajectory with sea surface chlorophylls         |  Argo float trajec
 
 ## Future scope of _ponman_
 
-The same way __ponman__ can add SST and PAR data from Aqua MODIS. Currently the datasets are need to be download seperately for overlay analysis. In near future, the data aquisition will also be add.We promised to add more features with more efficient object oriented programing(OOP). By the way,we are looking forward more suggestions from user base. Also we suggest to all users those who pursuing publications are requested to cite _ponman_, gst access the format as follows.
+The same way __ponman__ can add SST and PAR data from Aqua MODIS. Currently the datasets are need to be download seperately for overlay analysis. In near future, the data aquisition will also be add.We promised to add more features with more efficient object oriented programing(OOP). By the way,we are looking forward more suggestions from user base. Also we suggest to all users those who pursuing publications are requested to cite _ponman_, get access the format as follows.
 
 ```
 citation(ponman)
