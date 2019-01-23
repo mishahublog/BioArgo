@@ -96,7 +96,7 @@ find_mld<- function(Argoprofile){
   sigma<- gsw_sigma0(SA = Argoprofile$salinity,CT = Argoprofile$temperature)
   dat<- data.frame(sigma,pressure=Argoprofile$pressure)
   pres<- rownames(subset(dat,dat$pressure>=5 & Argoprofile$pressure<=10))[1]
-  sig03<- sigma[as.numeric(pres)]+0.002
+  sig03<- sigma[as.numeric(pres)]+0.003
   mld<- subset(dat,dat$sigma>=sig03 )[2,2]
   return(mld)
 }
