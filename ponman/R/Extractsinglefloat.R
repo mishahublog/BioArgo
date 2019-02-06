@@ -48,10 +48,14 @@ ExtractBioArgo<- function(bioarg) {
   
   presdat<- argo$PRES
   
-  ifelse(test = "v5" %in% names(presdat) ,yes = chl<- argo$PRES[,5],no = chl<- argo$PRES[,4] )
+  ifelse(test = "v5" %in% names(presdat) ,yes = pres<- argo$PRES[,5],no = pres<- argo$PRES[,4] )
   
   
-  bsct<- argo$BBP700[,5]
+    bsctdat<- argo$BBP700
+  
+  ifelse(test = "v5" %in% names(bsctdat) ,yes = bsct<- argo$BBP700[,5],no = bsct<- argo$BBP700[,4] )
+ 
+   
   
   
   
