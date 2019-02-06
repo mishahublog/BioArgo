@@ -29,8 +29,9 @@ ExtractBioArgo<- function(bioarg) {
   #Read .nc files
   argo<- read.nc(open.nc(bioarg))
   if(is.null(argo$CHLA)){stop("Chlorophyll missing:-Not a BioArgo")}
+  chldat<- argo$CHLA
   
-  ifelse(test = sum(is.na(argo$CHLA[,5]>0)),yes = chl<- argo$CHLA[,4],no = chl<- argo$CHLA[,5] )
+  ifelse(test = "v5" %in% names(chldat) ,yes = chl<- argo$CHLA[,5],no = chl<- argo$CHLA[,4] )
   
   oxy<- c(na.omit(argo$DOXY[,4]),na.omit(argo$DOXY[,3]))
   
