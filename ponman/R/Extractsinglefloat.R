@@ -28,16 +28,18 @@ ExtractBioArgo<- function(bioarg) {
   library(RNetCDF)
   #Read .nc files
   argo<- read.nc(open.nc(bioarg))
+ #chlorophyll
   if(is.null(argo$CHLA)){stop("Chlorophyll missing:-Not a BioArgo")}
-  chldat<- argo$CHLA
+  chldat<- as.data.frame(argo$CHLA)
   
-  ifelse(test = "v5" %in% names(chldat) ,yes = chl<- argo$CHLA[,5],no = chl<- argo$CHLA[,4] )
+  ifelse(test = "V5" %in% names(chldat) ,yes = chl<- argo$CHLA[,5],no = chl<- argo$CHLA[,4] )
   
-  oxy<- c(na.omit(argo$DOXY[,4]),na.omit(argo$DOXY[,3]))
+ #Oxygen
+   oxy<- c(na.omit(argo$DOXY[,4]),na.omit(argo$DOXY[,3]))
   
-  
+ #Salinity 
   psal<- c(na.omit(argo$PSAL[,2]),na.omit(argo$PSAL[,1]))
-  
+ #Temperature
   ifelse(test = !is.null(argo$TEMP),
          yes =temp<- c(na.omit(argo$TEMP[,2]),na.omit(argo$TEMP[,1])),
          no = temp<- c(na.omit(argo$TEMP_DOXY[,4]),na.omit(argo$TEMP_DOXY[,3])) )
@@ -45,15 +47,15 @@ ExtractBioArgo<- function(bioarg) {
     ux <- unique(x)
     ux[which.max(tabulate(match(x, ux)))]
   }
+  #Pressure
+  presdat<- as.data.frame(argo$PRES)
   
-  presdat<- argo$PRES
+  ifelse(test = "V5" %in% names(presdat) ,yes = pres<- argo$PRES[,5],no = pres<- argo$PRES[,4] )
   
-  ifelse(test = "v5" %in% names(presdat) ,yes = pres<- argo$PRES[,5],no = pres<- argo$PRES[,4] )
+  #Backscattering
+    bsctdat<- as.data.frame(argo$BBP700)
   
-  
-    bsctdat<- argo$BBP700
-  
-  ifelse(test = "v5" %in% names(bsctdat) ,yes = bsct<- argo$BBP700[,5],no = bsct<- argo$BBP700[,4] )
+  ifelse(test = "V5" %in% names(bsctdat) ,yes = bsct<- argo$BBP700[,5],no = bsct<- argo$BBP700[,4] )
  
    
   
