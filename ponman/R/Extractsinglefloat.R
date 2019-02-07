@@ -70,6 +70,7 @@ ExtractBioArgo<- function(bioarg) {
     date<- rep(as.Date(as.numeric(unique(argo$JULD)),origin="1950-01-01"),trimfac)
     lat<-  rep(as.numeric(Most_freq(argo$LATITUDE)),trimfac)
     lon<-  rep(as.numeric(Most_freq(argo$LONGITUDE)),trimfac)
+    cycle.no<-  rep(as.numeric(unique(argo$CYCLE_NUMBER)),trimfac)
     
     
     #Trim everthing with trimfac for making a dataframe 
