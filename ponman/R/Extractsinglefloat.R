@@ -66,6 +66,7 @@ ExtractBioArgo<- function(bioarg) {
   #================================================================================================================
   if (is.null(psal)){
     warning("salinity missing")
+    message("Derived paramters and filled contours may crash with errors")
     para<- list(chl,oxy,temp,pres)
     #find least length 
     trimfac<- min(as.numeric(lapply(para, function(x)length(x))))
