@@ -8,7 +8,7 @@
 #'@description 
 #'
 #'This function enables to access datasets from FTP servers from ifremer.It helps to access databases on two different modes.
-#'The dateset can be download in several bundles, for fullset of bioargo data, it is better to use the Argo-bio[5] merged
+#'The dateset can be download in several bundles, for fullset of bioargo data, it is better to use the Argo-bio[no.5] merged
 #'
 #'
 #'  
