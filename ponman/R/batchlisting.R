@@ -21,11 +21,18 @@
 #'
 #'
 #'
-batch<- function(filenames){
+batch<- function (filenames) 
+{
+  batchlist <- lapply(filenames, function(x) try(ExtractBioArgo(x)))
+  names(batchlist) <- filenames
   
-batchlist<- lapply(filenames,function(x)ExtractBioArgo(x))
-names(batchlist)<- filenames
-return(batchlist)}
+  batchlist<-  Filter(is.data.frame,batchlist)
+  
+  return(batchlist)
+  
+  
+}
+
 
 
 
